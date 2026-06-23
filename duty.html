@@ -13,9 +13,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 header{text-align:center;padding:28px 0 12px}
 header h1{font-size:1.3rem;font-weight:700;letter-spacing:-.3px}
 header p{margin-top:4px;font-size:.82rem;color:#888}
-.nav-bar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-.nav-bar a{text-decoration:none;padding:5px 12px;border-radius:16px;background:#fff;color:#888;font-size:.78rem;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:all .2s}
-.nav-bar a:hover,.nav-bar a.active{background:var(--c2);color:#fff}
+.nav-bar{display:flex;gap:6px;background:#f0f2f7;border-radius:14px;padding:5px;margin:12px 0 0;justify-content:center}.nav-bar a{flex:1;text-align:center;text-decoration:none;padding:8px 6px;border-radius:10px;font-size:.78rem;font-weight:600;color:#999;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:4px}.nav-bar a:hover{color:#666;background:rgba(255,255,255,.5)}.nav-bar a.active{background:#fff;color:var(--c1);box-shadow:0 1px 4px rgba(0,0,0,.08);font-weight:700}.nav-bar a svg{width:15px;height:15px;flex-shrink:0}
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);padding:20px;margin-bottom:14px}
 .card h2{font-size:1rem;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:7px}
 .card h2 svg{width:18px;height:18px;color:var(--c2);flex-shrink:0}
@@ -44,11 +42,7 @@ footer a{color:#aaa;text-decoration:none}
 <header>
 <h1>跨境关税计算器</h1>
 <p>估算中国出口至全球主要市场的进口关税和增值税</p>
-<div class="nav-bar">
-<a href="./">📐 尺寸换算</a>
-<a href="./duty.html" class="active">💰 关税</a>
-<a href="./shipping.html">🚚 运费</a>
-</div>
+<div class="nav-bar"><a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17h18l1-5-3-6-9 2-3 5H3"/><path d="M3 17v2"/><path d="M21 17v2"/></svg>尺寸换算</a><a href="./duty.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>关税计算</a><a href="./shipping.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>运费估算</a></div>
 </header>
 
 <div class="card">
@@ -124,4 +118,6 @@ document.addEventListener("DOMContentLoaded",function(){calc();["toC","cat","val
 </script>
 </body>
 </html>
+
+
 
