@@ -72,7 +72,7 @@ details summary{font-size:.8rem;font-weight:600;color:var(--c2);cursor:pointer;p
 footer{text-align:center;padding:18px 0;color:#aaa;font-size:.75rem}
 footer a{color:#aaa;text-decoration:none}
 
-@media(max-width:640px){
+.ad-wrap{margin:12px 0;padding:20px;background:#fafbfc;border:1px solid #eee;border-radius:12px;text-align:center;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .3s}.ad-wrap:hover{border-color:#ddd}.ad-label{font-size:.6rem;color:#ccc;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}@media(max-width:640px){
 .row,.row.three,.row.four{grid-template-columns:1fr}
 .dash{grid-template-columns:1fr 1fr}
 .card{padding:14px}
@@ -174,7 +174,7 @@ footer a{color:#aaa;text-decoration:none}
 
 <!-- Reference Table -->
 <div class="card">
-<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>MFN 关税速查 <span id="refHl" style="font-size:.65rem;font-weight:400;color:var(--c2)"></span></h2>
+<div class="ad-wrap"><div class="ad-label">-- Advertisement --</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="xxxxxxxxxx" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>MFN 关税速查 <span id="refHl" style="font-size:.65rem;font-weight:400;color:var(--c2)"></span></h2>
 <div class="ref-wrap">
 <table class="ref-table"><thead><tr><th>品类 (HTS参考)</th><th>🇺🇸 美国</th><th>🇪🇺 欧盟</th><th>🇬🇧 英国</th><th>🇯🇵 日本</th><th>🇰🇷 韩国</th><th>🇦🇺 澳洲</th><th>🇸🇬 新加坡</th><th>🇻🇳 越南</th><th>🇧🇷 巴西</th></tr></thead>
 <tbody id="refBody">
