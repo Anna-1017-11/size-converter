@@ -3,121 +3,278 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>跨境关税计算器 - 进口税费估算工具</title>
-<meta name="description" content="跨境电商关税计算器，估算中国出口至全球主要市场的进口关税和增值税。">
+<title>跨境关税计算器 - 25国进口税费专业估算</title>
+<meta name="description" content="跨境电商关税计算器专业版，支持25个国家、15个产品品类、多币种换算，含免税起征点、贸易协定提示和到岸成本分析。">
 <style>
-:root{--c1:#1a1a2e;--c2:#4f6ef7;--c3:#eef0f7}
+:root{--c1:#1a1a2e;--c2:#4f6ef7;--c3:#eef0f7;--c4:#f5f6f8;--r:12px;--s:0 2px 8px rgba(0,0,0,.06)}
 *,:after,:before{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f5f6f8;color:var(--c1);line-height:1.6;-webkit-font-smoothing:antialiased}
-.container{max-width:800px;margin:0 auto;padding:0 16px}
-header{text-align:center;padding:28px 0 12px}
-header h1{font-size:1.3rem;font-weight:700;letter-spacing:-.3px}
-header p{margin-top:4px;font-size:.82rem;color:#888}
-.nav-bar{display:flex;gap:6px;background:#f0f2f7;border-radius:14px;padding:5px;margin:12px 0 0;justify-content:center}.nav-bar a{flex:1;text-align:center;text-decoration:none;padding:8px 6px;border-radius:10px;font-size:.78rem;font-weight:600;color:#999;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:4px}.nav-bar a:hover{color:#666;background:rgba(255,255,255,.5)}.nav-bar a.active{background:#fff;color:var(--c1);box-shadow:0 1px 4px rgba(0,0,0,.08);font-weight:700}.nav-bar a svg{width:15px;height:15px;flex-shrink:0}
-.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);padding:20px;margin-bottom:14px}
-.card h2{font-size:1rem;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:7px}
-.card h2 svg{width:18px;height:18px;color:var(--c2);flex-shrink:0}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--c4);color:var(--c1);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:14px}
+.container{max-width:860px;margin:0 auto;padding:0 12px}
+header{text-align:center;padding:24px 0 10px}
+header h1{font-size:1.25rem;font-weight:700}
+header p{font-size:.8rem;color:#888;margin-top:3px}
+.nav-bar{display:flex;gap:6px;background:#f0f2f7;border-radius:14px;padding:5px;margin:10px auto 0;justify-content:center;max-width:480px}
+.nav-bar a{flex:1;text-align:center;text-decoration:none;padding:7px 6px;border-radius:10px;font-size:.75rem;font-weight:600;color:#999;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:4px}
+.nav-bar a:hover{color:#666;background:rgba(255,255,255,.5)}
+.nav-bar a.active{background:#fff;color:var(--c1);box-shadow:0 1px 4px rgba(0,0,0,.08);font-weight:700}
+.nav-bar a svg{width:14px;height:14px;flex-shrink:0}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--s);padding:18px;margin-bottom:12px}
+.card h2{font-size:.95rem;font-weight:700;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:7px}
+.card h2 svg{width:16px;height:16px;color:var(--c2);flex-shrink:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .row.three{grid-template-columns:1fr 1fr 1fr}
-.g{display:flex;flex-direction:column;gap:3px}
-.g label{font-size:.75rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.3px}
-.g input,.g select{padding:9px 11px;border:1.5px solid #e8eaf0;border-radius:8px;font-size:.9rem;background:#fafbfc;outline:none;width:100%;transition:all .2s}
+.row.four{grid-template-columns:1fr 1fr 1fr 1fr}
+.g{display:flex;flex-direction:column;gap:2px}
+.g label{font-size:.7rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.2px}
+.g input,.g select{padding:8px 10px;border:1.5px solid #e8eaf0;border-radius:8px;font-size:.85rem;background:#fafbfc;outline:none;width:100%;transition:all .2s}
 .g input:focus,.g select:focus{border-color:var(--c2);background:#fff;box-shadow:0 0 0 3px rgba(79,110,247,.1)}
-.g input[readonly]{font-weight:700;color:var(--c1);cursor:default;background:#f8f9fc;text-align:center;font-size:1rem}
-.result-box{background:var(--c3);border-radius:10px;padding:16px;text-align:center;margin-top:10px}
-.result-box .big{font-size:1.8rem;font-weight:800;color:var(--c2)}
-.result-box .label{font-size:.82rem;color:#888;margin-top:4px}
-.result-detail{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.result-item{background:#fff;border-radius:8px;padding:10px;text-align:center}
-.result-item .val{font-size:1.1rem;font-weight:700;color:var(--c1)}
-.result-item .lbl{font-size:.72rem;color:#888;margin-top:2px}
-.tip{font-size:.78rem;color:#888;background:#f8f9fc;padding:8px 12px;border-radius:8px;margin-top:10px;line-height:1.5}
-footer{text-align:center;padding:20px 0;color:#aaa;font-size:.78rem}
+.g input[readonly]{font-weight:700;color:var(--c1);cursor:default;background:#f8f9fc;text-align:center;font-size:.9rem}
+
+/* Result Dashboard */
+.dash{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.dash-item{background:var(--c3);border-radius:10px;padding:12px;text-align:center;transition:background .3s}
+.dash-item .val{font-size:1.4rem;font-weight:800;color:var(--c2);transition:color .3s}
+.dash-item .lbl{font-size:.7rem;color:#888;margin-top:2px}
+.dash-item.total{background:var(--c2);color:#fff}
+.dash-item.total .val{color:#fff}
+.dash-item.total .lbl{color:rgba(255,255,255,.8)}
+.dash-item.warn{background:#fff3cd;border:1px solid #ffc107}
+.dash-item.warn .val{color:#856404}
+
+/* Detail breakdown */
+.breakdown{font-size:.8rem;margin-top:10px;padding:10px;background:#f8f9fc;border-radius:8px;line-height:1.8}
+.breakdown .row-item{display:flex;justify-content:space-between;padding:2px 0}
+.breakdown .row-item.total{font-weight:700;border-top:1px solid #ddd;margin-top:4px;padding-top:6px}
+.breakdown .row-item .label{color:#555}
+.breakdown .row-item .amt{font-weight:600;font-family:monospace}
+
+/* Tags */
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.65rem;font-weight:600}
+.tag.free{background:#55efc4;color:#006266}
+.tag.caution{background:#ffeaa7;color:#b7950b}
+.tag.info{background:#dfe6e9;color:#636e72}
+
+/* Tip */
+.tip{font-size:.75rem;color:#888;background:#f8f9fc;padding:8px 12px;border-radius:8px;margin-top:8px;line-height:1.5}
+.tip strong{color:#555}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.75rem;margin-top:6px}
+th{background:#f8f9fc;font-weight:600;padding:6px 5px;text-align:center;border:1px solid #e8eaf0;white-space:nowrap;color:#666}
+td{padding:5px;text-align:center;border:1px solid #eef0f7}
+tr:nth-child(even) td{background:#fafbfc}
+td:first-child{text-align:left;font-weight:500}
+.min-threshold{background:#e8f8f5;font-size:.7rem;padding:6px 10px;border-radius:6px;margin-top:6px;display:flex;align-items:center;gap:6px}
+.min-threshold svg{width:14px;height:14px;color:#00b894;flex-shrink:0}
+
+footer{text-align:center;padding:18px 0;color:#aaa;font-size:.75rem}
 footer a{color:#aaa;text-decoration:none}
-@media(max-width:600px){.row,.row.three{grid-template-columns:1fr}.result-detail{grid-template-columns:1fr 1fr}.card{padding:14px}}
+@media(max-width:640px){
+.row,.row.three,.row.four{grid-template-columns:1fr}
+.dash{grid-template-columns:1fr 1fr}
+.dash-item.total{grid-column:span 2}
+.card{padding:14px}
+}
 </style>
 </head>
 <body>
 <div class="container">
+
 <header>
 <h1>跨境关税计算器</h1>
-<p>估算中国出口至全球主要市场的进口关税和增值税</p>
-<div class="nav-bar"><a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17h18l1-5-3-6-9 2-3 5H3"/><path d="M3 17v2"/><path d="M21 17v2"/></svg>尺寸换算</a><a href="./duty.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>关税计算</a><a href="./shipping.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>运费估算</a></div>
+<p>25个国家 · 15个品类 · 多币种 · 含免税起征点和贸易协定</p>
+<div class="nav-bar">
+<a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18l1-5-3-6-9 2-3 5H3"/><path d="M3 17v2"/><path d="M21 17v2"/></svg>尺寸换算</a>
+<a href="./duty.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>关税计算</a>
+<a href="./shipping.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>运费估算</a>
+</div>
 </header>
 
 <div class="card">
-<h2><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>关税计算</h2>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>关税估算</h2>
 <div class="row">
-<div class="g"><label>出口国</label><select id="fromC"><option value="cn" selected>🇨🇳 中国</option></select></div>
-<div class="g"><label>进口国</label>
-<select id="toC">
-<option value="us">🇺🇸 美国</option><option value="eu">🇪🇺 欧盟</option><option value="uk">🇬🇧 英国</option>
-<option value="jp">🇯🇵 日本</option><option value="kr">🇰🇷 韩国</option><option value="au">🇦🇺 澳大利亚</option>
-<option value="ca">🇨🇦 加拿大</option><option value="br">🇧🇷 巴西</option><option value="ae">🇦🇪 阿联酋</option>
-<option value="sg">🇸🇬 新加坡</option><option value="in">🇮🇳 印度</option><option value="my">🇲🇾 马来西亚</option>
-<option value="th">🇹🇭 泰国</option><option value="vn">🇻🇳 越南</option>
-</select>
-</div>
+<div class="g"><label>出口国</label><select id="fromC"><option value="cn" selected>🇨🇳 中国</option><option value="hk">🇭🇰 香港</option></select></div>
+<div class="g"><label>进口国</label><select id="toC">
+<optgroup label="北美"><option value="us">🇺🇸 美国</option><option value="ca">🇨🇦 加拿大</option><option value="mx">🇲🇽 墨西哥</option></optgroup>
+<optgroup label="欧洲"><option value="eu">🇪🇺 欧盟</option><option value="uk">🇬🇧 英国</option><option value="ch">🇨🇭 瑞士</option><option value="ru">🇷🇺 俄罗斯</option><option value="tr">🇹🇷 土耳其</option></optgroup>
+<optgroup label="亚太"><option value="jp">🇯🇵 日本</option><option value="kr">🇰🇷 韩国</option><option value="au">🇦🇺 澳大利亚</option><option value="sg">🇸🇬 新加坡</option><option value="in">🇮🇳 印度</option><option value="my">🇲🇾 马来西亚</option><option value="th">🇹🇭 泰国</option><option value="vn">🇻🇳 越南</option><option value="ph">🇵🇭 菲律宾</option><option value="id">🇮🇩 印度尼西亚</option></optgroup>
+<optgroup label="中东非"><option value="ae">🇦🇪 阿联酋</option><option value="sa">🇸🇦 沙特</option><option value="za">🇿🇦 南非</option><option value="eg">🇪🇬 埃及</option></optgroup>
+<optgroup label="南美"><option value="br">🇧🇷 巴西</option><option value="cl">🇨🇱 智利</option></optgroup>
+</select></div>
 </div>
 <div class="row three">
-<div class="g"><label>产品类别</label>
-<select id="cat">
-<option value="electronics">📱 电子产品</option><option value="clothing">👕 服装</option>
-<option value="shoes">👟 鞋类</option><option value="toys">🧸 玩具</option>
-<option value="furniture">🪑 家具</option><option value="home">🏠 家居</option>
-<option value="beauty">💄 美妆</option><option value="pets">🐾 宠物用品</option>
-<option value="auto">🚗 汽车配件</option><option value="food">🍫 食品</option>
-<option value="books">📚 书籍</option><option value="bags">👜 箱包</option>
-<option value="jewelry">💎 珠宝</option>
-</select>
+<div class="g"><label>产品类别</label><select id="cat">
+<option value="elec">📱 消费电子</option><option value="comp">💻 电脑及配件</option><option value="phone">📞 手机及配件</option><option value="cloth">👕 服装</option><option value="shoe">👟 鞋类</option><option value="bag">👜 箱包</option><option value="toy">🧸 玩具</option><option value="furn">🪑 家具</option><option value="home">🏠 家居用品</option><option value="beauty">💄 美妆个护</option><option value="pets">🐾 宠物用品</option><option value="auto">🚗 汽配</option><option value="food">🍫 食品饮料</option><option value="jewel">💎 珠宝首饰</option><option value="book">📚 书籍印刷品</option><option value="sport">⚽ 体育用品</option><option value="tool">🔧 工具五金</option>
+</select></div>
+<div class="g"><label>币种</label><select id="cur">
+<option value="1">💵 USD 美元</option><option value="0.14">🇪🇺 EUR 欧元</option><option value="0.14">🇬🇧 GBP 英镑</option><option value="0.007">🇯🇵 JPY 日元</option><option value="0.14">🇨🇳 CNY 人民币</option><option value="0.0007">🇰🇷 KRW 韩元</option><option value="0.65">🇦🇺 AUD 澳元</option><option value="0.18">🇨🇦 CAD 加元</option><option value="0.19">🇨🇭 CHF 瑞士法郎</option><option value="0.12">🇭🇰 HKD 港币</option><option value="0.012">🇮🇳 INR 印度卢比</option><option value="0.27">🇦🇪 AED 迪拉姆</option><option value="0.27">🇸🇦 SAR 沙特里亚尔</option><option value="0.06">🇹🇭 THB 泰铢</option>
+</select></div>
+<div class="g"><label>货值</label><input type="number" id="val" value="1000" min="0" step="100"></div>
 </div>
-<div class="g"><label>货值 CIF (USD)</label><input type="number" id="val" value="1000" min="0" step="100"></div>
-<div class="g"><label>运费 (USD)</label><input type="number" id="ship" value="100" min="0" step="10"></div>
-</div>
-<div class="result-box">
-<div class="label">预计总税费</div>
-<div class="big" id="totalR">$0.00</div>
-</div>
-<div class="result-detail">
-<div class="result-item"><div class="val" id="dutyR">$0</div><div class="lbl">关税</div></div>
-<div class="result-item"><div class="val" id="vatR">$0</div><div class="lbl">增值税</div></div>
-<div class="result-item"><div class="val" id="rateR">0%</div><div class="lbl">综合税率</div></div>
-<div class="result-item"><div class="val" id="totalR2">$0</div><div class="lbl">到岸总成本</div></div>
-</div>
-<div style="background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:.8rem;color:#856404;display:flex;gap:8px;align-items:flex-start"><span style="font-size:1.1rem">⚠️</span><span><strong>重要提醒：</strong>以上结果为估算值，仅供参考。实际关税和税率以进口国海关最终核定为准，不构成财务或法律建议。</span></div><div class="tip">💡 估算值仅供参考，实际以海关核定为准。保险费按货值0.6%估算。</div>
+<div class="row three">
+<div class="g"><label>运费</label><input type="number" id="ship" value="100" min="0" step="10"></div>
+<div class="g"><label>保险费 (货值%)</label><input type="number" id="ins" value="0.6" min="0" max="5" step="0.1"></div>
+<div class="g"><label>数量 (件)</label><input type="number" id="qty" value="1" min="1" step="1"></div>
 </div>
 
+<div class="dash">
+<div class="dash-item total" style="grid-column:span 1">
+<div class="val" id="totalTax">$0.00</div>
+<div class="lbl">应缴总税费</div>
+</div>
+<div class="dash-item">
+<div class="val" id="totDuty">$0</div>
+<div class="lbl">关税</div>
+</div>
+<div class="dash-item">
+<div class="val" id="totVat">$0</div>
+<div class="lbl">增值税</div>
+</div>
+</div>
+
+<div class="dash">
+<div class="dash-item" style="grid-column:span 1">
+<div class="val" id="totLanded">$0</div>
+<div class="lbl">到岸总成本 (CIF+税)</div>
+</div>
+<div class="dash-item">
+<div class="val" id="effRate">0%</div>
+<div class="lbl">综合税率</div>
+</div>
+<div class="dash-item">
+<div class="val" id="cifVal">$0</div>
+<div class="lbl">CIF 价值</div>
+</div>
+</div>
+
+<div class="breakdown" id="breakdown">
+<div class="row-item"><span class="label">📦 货值 (FOB)</span><span class="amt" id="dFob">$1,000.00</span></div>
+<div class="row-item"><span class="label">🚚 运费</span><span class="amt" id="dShip">$100.00</span></div>
+<div class="row-item"><span class="label">🛡️ 保险费</span><span class="amt" id="dIns">$6.00</span></div>
+<div class="row-item"><span class="label">📊 CIF 到岸价值</span><span class="amt" id="dCif">$1,106.00</span></div>
+<div class="row-item"><span class="label">💰 关税税率</span><span class="amt" id="dRate">0.0%</span></div>
+<div class="row-item"><span class="label">💵 应缴关税</span><span class="amt" id="dDuty">$0.00</span></div>
+<div class="row-item"><span class="label">🏛️ 增值税率</span><span class="amt" id="dVatRate">0%</span></div>
+<div class="row-item"><span class="label">💵 应缴增值税</span><span class="amt" id="dVat">$0.00</span></div>
+<div class="row-item total"><span class="label">💰 应缴总税费</span><span class="amt" id="dTotal">$0.00</span></div>
+<div class="row-item total"><span class="label">🏁 到岸总成本 (含税)</span><span class="amt" id="dLanded">$0.00</span></div>
+</div>
+
+<div id="deMinimis" class="min-threshold" style="display:none">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+<span id="dmText"></span>
+</div>
+
+<div id="tradeAgreement" class="min-threshold" style="display:none;background:#eaf0ff">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<span id="taText"></span>
+</div>
+
+<div class="tip"><strong>⚠️ 重要提醒：</strong>以上结果为估算值，仅供参考。实际关税和税率以进口国海关最终核定为准，不构成财务或法律建议。</div>
+</div>
+
+<!--- Rate reference table --->
 <div class="card">
-<h2><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>关税参考速查</h2>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>主要市场关税速查表</h2>
 <div style="overflow-x:auto">
-<table style="width:100%;border-collapse:collapse;font-size:.78rem">
-<thead><tr><th>产品</th><th>🇺🇸 美国</th><th>🇪🇺 欧盟</th><th>🇬🇧 英国</th><th>🇯🇵 日本</th><th>🇦🇺 澳洲</th></tr></thead>
+<table><thead><tr><th>品类</th><th>🇺🇸 美国</th><th>🇪🇺 欧盟</th><th>🇬🇧 英国</th><th>🇯🇵 日本</th><th>🇰🇷 韩国</th><th>🇦🇺 澳洲</th><th>🇸🇬 新加坡</th></tr></thead>
 <tbody>
-<tr><td>📱 电子产品</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
-<tr><td>👕 服装</td><td>12%</td><td>12%</td><td>12%</td><td>12%</td><td>10%</td></tr>
-<tr><td>👟 鞋类</td><td>10%</td><td>8%</td><td>8%</td><td>15%</td><td>8%</td></tr>
-<tr><td>🧸 玩具</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
-<tr><td>🪑 家具</td><td>1%</td><td>0%</td><td>0%</td><td>2%</td><td>0%</td></tr>
-<tr><td>💄 美妆</td><td>5.5%</td><td>6.5%</td><td>6.5%</td><td>6%</td><td>5%</td></tr>
-<tr><td>👜 箱包</td><td>9%</td><td>8%</td><td>8%</td><td>10%</td><td>6%</td></tr>
-<tr><td>💎 珠宝</td><td>5.5%</td><td>4%</td><td>4%</td><td>5%</td><td>4%</td></tr>
-</tbody>
-</table>
-<p style="font-size:.7rem;color:#aaa;margin-top:6px">* 关税税率随政策调整，以上为常见品类参考值</p>
+<tr><td>📱 消费电子</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr><td>💻 电脑配件</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr><td>👕 服装</td><td>12%</td><td>12%</td><td>12%</td><td>10%</td><td>13%</td><td>10%</td><td>0%</td></tr>
+<tr><td>👟 鞋类</td><td>10%</td><td>8%</td><td>8%</td><td>15%</td><td>12%</td><td>8%</td><td>0%</td></tr>
+<tr><td>🧸 玩具</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr><td>🪑 家具</td><td>1%</td><td>0%</td><td>0%</td><td>2%</td><td>3%</td><td>0%</td><td>0%</td></tr>
+<tr><td>💄 美妆</td><td>5.5%</td><td>6.5%</td><td>6.5%</td><td>6%</td><td>8%</td><td>5%</td><td>0%</td></tr>
+<tr><td>👜 箱包</td><td>9%</td><td>8%</td><td>8%</td><td>10%</td><td>9%</td><td>6%</td><td>0%</td></tr>
+<tr><td>💎 珠宝</td><td>5.5%</td><td>4%</td><td>4%</td><td>5%</td><td>6%</td><td>4%</td><td>0%</td></tr>
+</tbody></table>
+<p style="font-size:.68rem;color:#aaa;margin-top:5px">* 关税税率随政策调整，以上为常见品类参考值。贸易协定可享优惠。RCEP 成员国之间部分品类可降至 0%。</p>
 </div>
 </div>
 
 </div>
-<footer>跨境关税计算器 &copy; 2026 · <a href="./">📐 尺寸换算</a> · <a href="./shipping.html">🚚 运费</a> · <a href="privacy.html">隐私</a> · <a href="disclaimer.html">免责声明</a></footer>
+<footer>跨境关税计算器 &copy; 2026 &mdash; <a href="privacy.html">隐私政策</a> &mdash; <a href="disclaimer.html">免责声明</a></footer>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx" crossorigin></script>
 <script>
-var rates={us:{electronics:0,clothing:12,shoes:10,toys:0,furniture:1,home:3.5,beauty:5.5,pets:0,auto:2.5,food:8,books:0,bags:9,jewelry:5.5,vat:0},eu:{electronics:0,clothing:12,shoes:8,toys:0,furniture:0,home:3,beauty:6.5,pets:0,auto:3.5,food:15,books:0,bags:8,jewelry:4,vat:20},uk:{electronics:0,clothing:12,shoes:8,toys:0,furniture:0,home:3,beauty:6.5,pets:0,auto:3.5,food:12,books:0,bags:8,jewelry:4,vat:20},jp:{electronics:0,clothing:12,shoes:15,toys:0,furniture:2,home:4,beauty:6,pets:0,auto:0,food:18,books:0,bags:10,jewelry:5,vat:10},kr:{electronics:0,clothing:13,shoes:12,toys:0,furniture:3,home:5,beauty:8,pets:0,auto:4,food:20,books:0,bags:9,jewelry:6,vat:10},au:{electronics:0,clothing:10,shoes:8,toys:0,furniture:0,home:3,beauty:5,pets:0,auto:5,food:10,books:0,bags:6,jewelry:4,vat:10},ca:{electronics:0,clothing:12,shoes:15,toys:0,furniture:3,home:4,beauty:6,pets:0,auto:4,food:12,books:0,bags:11,jewelry:5,vat:13},br:{electronics:12,clothing:25,shoes:30,toys:20,furniture:15,home:18,beauty:20,pets:10,auto:18,food:25,books:0,bags:25,jewelry:18,vat:17},ae:{electronics:0,clothing:5,shoes:5,toys:0,furniture:0,home:0,beauty:0,pets:0,auto:5,food:5,books:0,bags:5,jewelry:0,vat:5},sg:{electronics:0,clothing:0,shoes:0,toys:0,furniture:0,home:0,beauty:0,pets:0,auto:0,food:0,books:0,bags:0,jewelry:0,vat:9},in:{electronics:10,clothing:20,shoes:25,toys:15,furniture:12,home:14,beauty:18,pets:8,auto:15,food:30,books:0,bags:20,jewelry:20,vat:18},my:{electronics:0,clothing:15,shoes:15,toys:0,furniture:5,home:8,beauty:10,pets:0,auto:10,food:12,books:0,bags:10,jewelry:5,vat:10},th:{electronics:0,clothing:20,shoes:20,toys:5,furniture:8,home:10,beauty:12,pets:5,auto:8,food:15,books:0,bags:15,jewelry:10,vat:7},vn:{electronics:0,clothing:18,shoes:20,toys:5,furniture:8,home:10,beauty:12,pets:5,auto:10,food:18,books:0,bags:15,jewelry:10,vat:10}};
-function calc(){var to=$("toC").value,cat=$("cat").value,val=parseFloat($("val").value)||0,ship=parseFloat($("ship").value)||0;var d=rates[to];if(!d)return;var cif=val+ship+val*0.006;var dr=d[cat]/100;var duty=cif*dr;var vat=(cif+duty)*d.vat/100;var total=duty+vat;var fm=function(n){return "$"+n.toFixed(2).replace(/\\B(?=(\\d{3})+(?!\\d))/g,",")};$("totalR").textContent=fm(total);$("dutyR").textContent=fm(duty);$("vatR").textContent=fm(vat);$("rateR").textContent=d.vat?(dr*100+d.vat).toFixed(1)+"%":(dr*100).toFixed(1)+"%";$("totalR2").textContent=fm(cif+total)}
-document.addEventListener("DOMContentLoaded",function(){calc();["toC","cat","val","ship"].forEach(function(i){$(i).addEventListener("input",calc)})});
+// 25个国家关税数据
+var RT = {
+us:{elec:0,comp:0,phone:0,cloth:12,shoe:10,bag:9,toy:0,furn:1,home:3.5,beauty:5.5,pets:0,auto:2.5,food:8,jewel:5.5,book:0,sport:2.5,tool:3,vat:0,min:$800},
+eu:{elec:0,comp:0,phone:0,cloth:12,shoe:8,bag:8,toy:0,furn:0,home:3,beauty:6.5,pets:0,auto:3.5,food:15,jewel:4,book:0,sport:3.5,tool:3,vat:20,min:$175},
+uk:{elec:0,comp:0,phone:0,cloth:12,shoe:8,bag:8,toy:0,furn:0,home:3,beauty:6.5,pets:0,auto:3.5,food:12,jewel:4,book:0,sport:3.5,tool:3,vat:20,min:$185},
+jp:{elec:0,comp:0,phone:0,cloth:10,shoe:15,bag:10,toy:0,furn:2,home:4,beauty:6,pets:0,auto:0,food:18,jewel:5,book:0,sport:3,tool:2.5,vat:10,min:$155},
+kr:{elec:0,comp:0,phone:0,cloth:13,shoe:12,bag:9,toy:0,furn:3,home:5,beauty:8,pets:0,auto:4,food:20,jewel:6,book:0,sport:4,tool:3.5,vat:10,min:$150},
+au:{elec:0,comp:0,phone:0,cloth:10,shoe:8,bag:6,toy:0,furn:0,home:3,beauty:5,pets:0,auto:5,food:10,jewel:4,book:0,sport:2.5,tool:2.5,vat:10,min:$770},
+ca:{elec:0,comp:0,phone:0,cloth:12,shoe:15,bag:11,toy:0,furn:3,home:4,beauty:6,pets:0,auto:4,food:12,jewel:5,book:0,sport:3.5,tool:3,vat:13,min:$130},
+mx:{elec:15,comp:10,phone:15,cloth:20,shoe:20,bag:18,toy:12,furn:10,home:12,beauty:15,pets:8,auto:12,food:25,jewel:15,book:0,sport:12,tool:10,vat:16,min:$50},
+br:{elec:12,comp:10,phone:12,cloth:25,shoe:30,bag:25,toy:20,furn:15,home:18,beauty:20,pets:10,auto:18,food:25,jewel:18,book:0,sport:15,tool:14,vat:17,min:$50},
+cl:{elec:0,comp:0,phone:0,cloth:6,shoe:6,bag:6,toy:0,furn:0,home:3,beauty:6,pets:0,auto:0,food:8,jewel:6,book:0,sport:3,tool:3,vat:19,min:$30},
+ae:{elec:0,comp:0,phone:0,cloth:5,shoe:5,bag:5,toy:0,furn:0,home:0,beauty:0,pets:0,auto:5,food:5,jewel:0,book:0,sport:0,tool:0,vat:5,min:$270},
+sa:{elec:0,comp:0,phone:0,cloth:8,shoe:8,bag:8,toy:0,furn:5,home:5,beauty:5,pets:0,auto:5,food:8,jewel:5,book:0,sport:5,tool:5,vat:15,min:$265},
+za:{elec:5,comp:0,phone:5,cloth:30,shoe:25,bag:20,toy:10,furn:12,home:15,beauty:18,pets:5,auto:15,food:25,jewel:15,book:0,sport:10,tool:8,vat:15,min:$50},
+eg:{elec:10,comp:5,phone:10,cloth:30,shoe:30,bag:25,toy:15,furn:15,home:18,beauty:20,pets:8,auto:18,food:25,jewel:15,book:0,sport:12,tool:10,vat:14,min:$50},
+sg:{elec:0,comp:0,phone:0,cloth:0,shoe:0,bag:0,toy:0,furn:0,home:0,beauty:0,pets:0,auto:0,food:0,jewel:0,book:0,sport:0,tool:0,vat:9,min:$320},
+in:{elec:10,comp:7.5,phone:12,cloth:20,shoe:25,bag:20,toy:15,furn:12,home:14,beauty:18,pets:8,auto:15,food:30,jewel:20,book:0,sport:12,tool:10,vat:18,min:$26},
+my:{elec:0,comp:0,phone:0,cloth:15,shoe:15,bag:10,toy:0,furn:5,home:8,beauty:10,pets:0,auto:10,food:12,jewel:5,book:0,sport:5,tool:5,vat:10,min:$115},
+th:{elec:0,comp:0,phone:5,cloth:20,shoe:20,bag:15,toy:5,furn:8,home:10,beauty:12,pets:5,auto:8,food:15,jewel:10,book:0,sport:8,tool:6,vat:7,min:$50},
+vn:{elec:0,comp:0,phone:5,cloth:18,shoe:20,bag:15,toy:5,furn:8,home:10,beauty:12,pets:5,auto:10,food:18,jewel:10,book:0,sport:8,tool:6,vat:10,min:$45},
+ph:{elec:5,comp:0,phone:5,cloth:15,shoe:15,bag:12,toy:5,furn:8,home:10,beauty:10,pets:3,auto:8,food:15,jewel:10,book:0,sport:6,tool:5,vat:12,min:$200},
+id:{elec:5,comp:0,phone:5,cloth:20,shoe:25,bag:20,toy:7,furn:10,home:12,beauty:15,pets:5,auto:10,food:20,jewel:15,book:0,sport:8,tool:7,vat:11,min:$75},
+ru:{elec:5,comp:0,phone:5,cloth:20,shoe:20,bag:18,toy:8,furn:10,home:12,beauty:15,pets:5,auto:10,food:18,jewel:15,book:0,sport:8,tool:7,vat:20,min:$200},
+tr:{elec:5,comp:2.5,phone:8,cloth:22,shoe:25,bag:18,toy:8,furn:8,home:10,beauty:14,pets:4,auto:10,food:20,jewel:15,book:0,sport:8,tool:6,vat:20,min:$77},
+ch:{elec:0,comp:0,phone:0,cloth:8,shoe:6,bag:6,toy:0,furn:0,home:2,beauty:4,pets:0,auto:2.5,food:10,jewel:3,book:0,sport:2.5,tool:2,vat:8.1,min:$165},
+hk:{elec:0,comp:0,phone:0,cloth:0,shoe:0,bag:0,toy:0,furn:0,home:0,beauty:0,pets:0,auto:0,food:0,jewel:0,book:0,sport:0,tool:0,vat:0,min:$0}
+};
+// Trade agreements
+var TA = {au:"中澳FTA",kr:"中韩FTA",sg:"中国-新加坡FTA",cl:"中智FTA",ch:"中瑞FTA",my:"中国-东盟FTA|RCEP",th:"中国-东盟FTA|RCEP",vn:"中国-东盟FTA|RCEP",ph:"中国-东盟FTA|RCEP",id:"中国-东盟FTA|RCEP",jp:"RCEP",kr2:"RCEP",au2:"RCEP",nz:"RCEP"};
+
+var $ = function(i){return document.getElementById(i)};
+
+function calc(){
+  var to=$(toC).value,cat=$(cat).value,val=parseFloat($(val).value)||0,ship=parseFloat($(ship).value)||0,ins=parseFloat($(ins).value)||0,qty=parseInt($(qty).value)||1;
+  var cur=parseFloat($(cur).value)||1;
+  var d=RT[to];if(!d)return;
+  var cif=val+ship+val*ins/100;var dr=d[cat]/100;var duty=cif*dr;var vat=(cif+duty)*d.vat/100;var total=duty+vat;
+  var landed=cif+total;
+  
+  // Per unit
+  var ppu=landed/qty;
+  
+  // De minimis check
+  var dm=d.min;var dmNote="";var hideDM=true;
+  if(dm>0&&cif*cur<=dm){dmNote="✅ CIF价值低于"+to.toUpperCase()+"免税额 $"+dm+"（约"+(dm/cur).toFixed(0)+"本币），免关税！";hideDM=false;duty=0;total=vat;landed=cif+vat}
+  else if(dm>0){dmNote="⚠️ CIF价值超过"+to.toUpperCase()+"免税额 $"+dm+"（约"+(dm/cur).toFixed(0)+"本币），需缴纳关税和增值税。";hideDM=false}
+  
+  var fm=function(n){return "$"+n.toFixed(2).replace(/B(?=(d{3})+(?!d))/g,",")};
+  var ef=d.vat?((dr*100)+(d.vat)).toFixed(1):(dr*100).toFixed(1);
+  
+  $("totalTax").textContent=fm(total);
+  $("totDuty").textContent=fm(duty);$("totVat").textContent=fm(vat);
+  $("totLanded").textContent=fm(landed);$("effRate").textContent=ef+"%";
+  var cifTotal=cif;var dmVal=(cif*cur);
+  $("cifVal").textContent=fm(cifTotal);
+  
+  // Detail
+  $("dFob").textContent=fm(val);$("dShip").textContent=fm(ship);$("dIns").textContent=fm(val*ins/100);
+  $("dCif").textContent=fm(cif);$("dRate").textContent=(dr*100).toFixed(1)+"%";$("dDuty").textContent=fm(duty);
+  $("dVatRate").textContent=d.vat+"%";$("dVat").textContent=fm(vat);
+  $("dTotal").textContent=fm(total);$("dLanded").textContent=fm(landed);
+  
+  // De minimis
+  var dmEl=$("deMinimis");var dmT=$("dmText");dmEl.style.display=hideDM?"none":"flex";dmT.textContent=dmNote;
+  
+  // Trade agreement
+  var taEl=$("tradeAgreement");var taT=$("taText");
+  var taKey=to+"2";var taStr=TA[taKey]||TA[to]||"";
+  if(taStr){taEl.style.display="flex";taT.textContent="该国有贸易协定："+taStr+"，部分品类可享优惠税率。请核实具体适用条件。"}
+  else if(dm>0){taEl.style.display="none"}
+  
+  // Highlight dashboard
+  $("totDuty").parentElement.style.background=duty===0&&dm>0?"#e8f8f5":"";$("totDuty").parentElement.style.color=duty===0&&dm>0?"#00b894":"";
+}
+
+document.addEventListener("DOMContentLoaded",function(){calc();["toC","cat","val","ship","ins","cur","qty"].forEach(function(i){$(i).addEventListener("input",calc);$(i).addEventListener("change",calc)})});
 </script>
 </body>
 </html>
-
-
-
