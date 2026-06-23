@@ -1,8 +1,8 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
+﻿<!DOCTYPE html><html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>跨境尺寸换算器 - 鞋码/服装/度量衡在线转换</title>
-<meta name="description" content="跨境电商尺寸换算工具，支持中美欧日英鞋码换算、国际服装尺码对照、英寸厘米磅千克转换。">
-<meta name="keywords" content="尺寸换算,鞋码换算,服装尺码,单位换算,跨境电商">
+<title>璺ㄥ灏哄鎹㈢畻鍣?- 闉嬬爜/鏈嶈/搴﹂噺琛″湪绾胯浆鎹?/title>
+<meta name="description" content="璺ㄥ鐢靛晢灏哄鎹㈢畻宸ュ叿锛屾敮鎸佷腑缇庢鏃ヨ嫳闉嬬爜鎹㈢畻銆佸浗闄呮湇瑁呭昂鐮佸鐓с€佽嫳瀵稿帢绫崇鍗冨厠杞崲銆?>
+<meta name="keywords" content="灏哄鎹㈢畻,闉嬬爜鎹㈢畻,鏈嶈灏虹爜,鍗曚綅鎹㈢畻,璺ㄥ鐢靛晢">
 <style>
 :root{--c1:#1a1a2e;--c2:#4f6ef7;--c2g:linear-gradient(135deg,#4f6ef7,#6c5ce7);--c3:#eef0f7;--c4:#f5f6f8;--shadow:0 2px 8px rgba(0,0,0,.06);--radius:12px}
 [data-theme=female]{--c1:#2d1b2e;--c2:#e84393;--c2g:linear-gradient(135deg,#e84393,#d6306b);--c3:#fce4ec;--c4:#fdf5f8}
@@ -77,100 +77,97 @@ header h1{font-size:1.1rem}
 <div class="container">
 
 <header>
-<h1>跨境尺寸换算器</h1>
-<p>鞋码 · 服装尺码 · 度量衡单位 — 跨境电商必备</p>
+<h1>璺ㄥ灏哄鎹㈢畻鍣?/h1>
+<p>闉嬬爜 路 鏈嶈灏虹爜 路 搴﹂噺琛″崟浣?鈥?璺ㄥ鐢靛晢蹇呭</p>
 <div class="gender-toggle" id="genderToggle">
 <button class="gender-btn active" data-gender="male">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><path d="M12 8v10"/><path d="M8 14h8"/></svg>男
-</button>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><path d="M12 8v10"/><path d="M8 14h8"/></svg>鐢?</button>
 <button class="gender-btn" data-gender="female">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M12 11v9"/><path d="M8 16h8"/></svg>女
-</button>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M12 11v9"/><path d="M8 16h8"/></svg>濂?</button>
 <button class="gender-btn" data-gender="kids">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M12 12v6"/><path d="M8 18h8"/></svg>童
-</button>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M12 12v6"/><path d="M8 18h8"/></svg>绔?</button>
 </div>
 </header>
 <div class="nav-bar" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px">
-<a href="./" class="active" style="text-decoration:none;padding:5px 12px;border-radius:16px;background:var(--c2);color:#fff;font-size:.78rem;font-weight:600">📐 尺寸换算</a>
-<a href="./duty.html" style="text-decoration:none;padding:5px 12px;border-radius:16px;background:#fff;color:#888;font-size:.78rem;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)">💰 关税</a>
-<a href="./shipping.html" style="text-decoration:none;padding:5px 12px;border-radius:16px;background:#fff;color:#888;font-size:.78rem;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)">🚚 运费</a>
+<a href="./" class="active" style="text-decoration:none;padding:5px 12px;border-radius:16px;background:var(--c2);color:#fff;font-size:.78rem;font-weight:600">馃搻 灏哄鎹㈢畻</a>
+<a href="./duty.html" style="text-decoration:none;padding:5px 12px;border-radius:16px;background:#fff;color:#888;font-size:.78rem;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)">馃挵 鍏崇◣</a>
+<a href="./shipping.html" style="text-decoration:none;padding:5px 12px;border-radius:16px;background:#fff;color:#888;font-size:.78rem;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)">馃殮 杩愯垂</a>
 </div>
 
 <div class="theme-banner" id="themeBanner">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><path d="M12 8v10"/><path d="M8 14h8"/></svg>
-<span id="bannerText">男鞋尺码换算</span>
+<span id="bannerText">鐢烽瀷灏虹爜鎹㈢畻</span>
 </div>
 
 <div class="ad-placeholder"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="xxxxxxxxxx" data-ad-format="horizontal"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 
 <!----------- Shoes ----------->
 <div class="card">
-<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18l1-5-3-6-9 2-3 5H3"/><path d="M3 17v2"/><path d="M21 17v2"/></svg>鞋码换算</h2>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18l1-5-3-6-9 2-3 5H3"/><path d="M3 17v2"/><path d="M21 17v2"/></svg>闉嬬爜鎹㈢畻</h2>
 <div class="row three">
-<div class="g"><label>鞋码</label><input type="number" id="shoeV" value="42" min="10" max="50" step="0.5"></div>
-<div class="g"><label>来源</label><select id="shoeF"><option value="cn">🇨🇳 CN</option><option value="eu" selected>🇪🇺 EU</option><option value="us">🇺🇸 US</option><option value="uk">🇬🇧 UK</option><option value="jp">🇯🇵 JP</option></select></div>
-<div class="g"><label>目标</label><select id="shoeT"><option value="cn">🇨🇳 CN</option><option value="eu">🇪🇺 EU</option><option value="us" selected>🇺🇸 US</option><option value="uk">🇬🇧 UK</option><option value="jp">🇯🇵 JP</option></select></div>
+<div class="g"><label>闉嬬爜</label><input type="number" id="shoeV" value="42" min="10" max="50" step="0.5"></div>
+<div class="g"><label>鏉ユ簮</label><select id="shoeF"><option value="cn">馃嚚馃嚦 CN</option><option value="eu" selected>馃嚜馃嚭 EU</option><option value="us">馃嚭馃嚫 US</option><option value="uk">馃嚞馃嚙 UK</option><option value="jp">馃嚡馃嚨 JP</option></select></div>
+<div class="g"><label>鐩爣</label><select id="shoeT"><option value="cn">馃嚚馃嚦 CN</option><option value="eu">馃嚜馃嚭 EU</option><option value="us" selected>馃嚭馃嚫 US</option><option value="uk">馃嚞馃嚙 UK</option><option value="jp">馃嚡馃嚨 JP</option></select></div>
 </div>
 <div class="row swap">
-<div class="g"><label>换算结果</label><input type="text" id="shoeR" readonly></div>
+<div class="g"><label>鎹㈢畻缁撴灉</label><input type="text" id="shoeR" readonly></div>
 <button class="swap-btn" id="shoeSwap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2l4 4-4 4"/><path d="M3 6h18"/><path d="M7 18l-4-4 4-4"/><path d="M21 18H3"/></svg></button>
-<div class="g"><label>各国对照</label><input type="text" id="shoeAll" readonly></div>
+<div class="g"><label>鍚勫浗瀵圭収</label><input type="text" id="shoeAll" readonly></div>
 </div>
-<div class="tip">输入鞋码，选择来源/目标标准即可换算。性别会影响尺码对应关系。</div>
+<div class="tip">杈撳叆闉嬬爜锛岄€夋嫨鏉ユ簮/鐩爣鏍囧噯鍗冲彲鎹㈢畻銆傛€у埆浼氬奖鍝嶅昂鐮佸搴斿叧绯汇€?/div>
 </div>
 
 <div class="card">
-<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>鞋码对照表</h2>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>闉嬬爜瀵圭収琛?/h2>
 <div class="table-wrap"><table><thead><tr><th>CN</th><th>EU</th><th>US</th><th>UK</th><th>JP</th></tr></thead><tbody id="shoeTbody"></tbody></table></div>
 </div>
 
 <!----------- Clothing ----------->
 <div class="card">
-<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 5v14"/><path d="M18 5v14"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>服装尺码</h2>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 5v14"/><path d="M18 5v14"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>鏈嶈灏虹爜</h2>
 <div class="row three">
-<div class="g"><label>胸/腰/臀围(cm)</label><input type="number" id="cloV" value="90" step="0.5"></div>
-<div class="g"><label>类型</label><select id="cloCat"><option value="top">上装</option><option value="bottom">下装</option><option value="dress">连衣裙</option></select></div>
-<div class="g"><label>测量</label><select id="cloM"><option value="bust">胸围</option><option value="waist">腰围</option><option value="hip">臀围</option></select></div>
+<div class="g"><label>鑳?鑵?鑷€鍥?cm)</label><input type="number" id="cloV" value="90" step="0.5"></div>
+<div class="g"><label>绫诲瀷</label><select id="cloCat"><option value="top">涓婅</option><option value="bottom">涓嬭</option><option value="dress">杩炶。瑁?/option></select></div>
+<div class="g"><label>娴嬮噺</label><select id="cloM"><option value="bust">鑳稿洿</option><option value="waist">鑵板洿</option><option value="hip">鑷€鍥?/option></select></div>
 </div>
 <div class="row three">
-<div class="g"><label>中国</label><input type="text" id="cloCN" readonly></div>
-<div class="g"><label>美国</label><input type="text" id="cloUS" readonly></div>
-<div class="g"><label>欧洲</label><input type="text" id="cloEU" readonly></div>
+<div class="g"><label>涓浗</label><input type="text" id="cloCN" readonly></div>
+<div class="g"><label>缇庡浗</label><input type="text" id="cloUS" readonly></div>
+<div class="g"><label>娆ф床</label><input type="text" id="cloEU" readonly></div>
 </div>
 <div class="row three">
-<div class="g"><label>英国</label><input type="text" id="cloUK" readonly></div>
-<div class="g"><label>国际</label><input type="text" id="cloINTL" readonly></div>
-<div class="g"><label>日本</label><input type="text" id="cloJP" readonly></div>
+<div class="g"><label>鑻卞浗</label><input type="text" id="cloUK" readonly></div>
+<div class="g"><label>鍥介檯</label><input type="text" id="cloINTL" readonly></div>
+<div class="g"><label>鏃ユ湰</label><input type="text" id="cloJP" readonly></div>
 </div>
 </div>
 
 <!----------- Units ----------->
 <div class="card">
-<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>度量衡</h2>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>搴﹂噺琛?/h2>
 <div class="row three">
-<div class="g"><label>数值</label><input type="number" id="lenV" value="10" step="any"></div>
-<div class="g"><label>从</label><select id="lenF"><option value="cm" selected>厘米</option><option value="inch">英寸</option><option value="mm">毫米</option><option value="m">米</option><option value="ft">英尺</option></select></div>
-<div class="g"><label>到</label><select id="lenT"><option value="inch">英寸</option><option value="cm" selected>厘米</option><option value="mm">毫米</option><option value="m">米</option><option value="ft">英尺</option></select></div>
+<div class="g"><label>鏁板€?/label><input type="number" id="lenV" value="10" step="any"></div>
+<div class="g"><label>浠?/label><select id="lenF"><option value="cm" selected>鍘樼背</option><option value="inch">鑻卞</option><option value="mm">姣背</option><option value="m">绫?/option><option value="ft">鑻卞昂</option></select></div>
+<div class="g"><label>鍒?/label><select id="lenT"><option value="inch">鑻卞</option><option value="cm" selected>鍘樼背</option><option value="mm">姣背</option><option value="m">绫?/option><option value="ft">鑻卞昂</option></select></div>
 </div>
-<div class="g" style="margin-bottom:8px"><label>结果</label><input type="text" id="lenR" readonly></div>
+<div class="g" style="margin-bottom:8px"><label>缁撴灉</label><input type="text" id="lenR" readonly></div>
 <div class="row three">
-<div class="g"><label>重量</label><input type="number" id="wV" value="1" step="any"></div>
-<div class="g"><label>从</label><select id="wF"><option value="kg" selected>千克</option><option value="lb">磅</option><option value="oz">盎司</option><option value="jin">斤</option></select></div>
-<div class="g"><label>到</label><select id="wT"><option value="lb">磅</option><option value="kg" selected>千克</option><option value="oz">盎司</option><option value="jin">斤</option></select></div>
+<div class="g"><label>閲嶉噺</label><input type="number" id="wV" value="1" step="any"></div>
+<div class="g"><label>浠?/label><select id="wF"><option value="kg" selected>鍗冨厠</option><option value="lb">纾?/option><option value="oz">鐩庡徃</option><option value="jin">鏂?/option></select></div>
+<div class="g"><label>鍒?/label><select id="wT"><option value="lb">纾?/option><option value="kg" selected>鍗冨厠</option><option value="oz">鐩庡徃</option><option value="jin">鏂?/option></select></div>
 </div>
-<div class="g" style="margin-bottom:8px"><label>结果</label><input type="text" id="wR" readonly></div>
+<div class="g" style="margin-bottom:8px"><label>缁撴灉</label><input type="text" id="wR" readonly></div>
 <div class="row three">
-<div class="g"><label>温度</label><input type="number" id="tempV" value="25" step="any"></div>
-<div class="g"><label>从</label><select id="tempF"><option value="c" selected>℃</option><option value="f">℉</option></select></div>
-<div class="g"><label>到</label><select id="tempT"><option value="f">℉</option><option value="c" selected>℃</option></select></div>
+<div class="g"><label>娓╁害</label><input type="number" id="tempV" value="25" step="any"></div>
+<div class="g"><label>浠?/label><select id="tempF"><option value="c" selected>鈩?/option><option value="f">鈩?/option></select></div>
+<div class="g"><label>鍒?/label><select id="tempT"><option value="f">鈩?/option><option value="c" selected>鈩?/option></select></div>
 </div>
-<div class="g"><label>结果</label><input type="text" id="tempR" readonly></div>
+<div class="g"><label>缁撴灉</label><input type="text" id="tempR" readonly></div>
 </div>
 
 </div>
 
-<footer>跨境尺寸换算器 &copy; 2026 · <a href="privacy.html" style="color:#aaa">隐私政策</a></footer>
+<footer>跨境尺寸换算器 &copy; 2026 &mdash; <a href="privacy.html" style="color:#aaa">隐私政策</a> &mdash; <a href="disclaimer.html" style="color:#aaa">免责声明</a></footer>
 
 <script>
 var S={male:{cn:[38,39,40,40.5,41,42,42.5,43,44,44.5,45,45.5,46,47,48],eu:[38,39,40,40.5,41,42,42.5,43,44,44.5,45,45.5,46,47,48],us:[6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13],uk:[5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12],jp:[24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,31]},female:{cn:[34,35,35.5,36,37,38,38.5,39,40,41,42,43,44],eu:[34,35,35.5,36,37,38,38.5,39,40,41,42,43,44],us:[4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10],uk:[2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8],jp:[21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27]},kids:{cn:[16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37],eu:[16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37],us:[1,2,3,4,5,6,7,8,9,10,11,12,13,1,2,3,4,5,6,7,8,9],uk:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,1,2,3,4,5,6,7,8],jp:[9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]}};
@@ -187,9 +184,9 @@ genderBtn.forEach(function(x){x.classList.remove("active")});
 this.classList.add("active");
 var g=this.dataset.gender;
 document.body.setAttribute("data-theme",g);
-var label={male:"男鞋",female:"女鞋",kids:"童鞋"};
+var label={male:"鐢烽瀷",female:"濂抽瀷",kids:"绔ラ瀷"};
 var icon={male:"<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='5' r='3'/><path d='M12 8v10'/><path d='M8 14h8'/></svg>",female:"<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='7' r='4'/><path d='M12 11v9'/><path d='M8 16h8'/></svg>",kids:"<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='8' r='4'/><path d='M12 12v6'/><path d='M8 18h8'/></svg>"};
-$("themeBanner").innerHTML=icon[g]+" <span>"+label[g]+"尺码换算</span>";
+$("themeBanner").innerHTML=icon[g]+" <span>"+label[g]+"灏虹爜鎹㈢畻</span>";
 updateShoe();buildChart(g);
 });
 });
@@ -197,15 +194,15 @@ updateShoe();buildChart(g);
 // Shoe
 function sd(g){return S[g]||S.male}
 function cs(v,f,t,g){var d=sd(g),a=d[f],b=d[t];if(!a||!b)return null;var bi=0,bd=Infinity;a.forEach(function(x,i){var ad=Math.abs(Number(x)-Number(v));if(ad<bd){bd=ad;bi=i}});return bi<b.length?b[bi]:b[b.length-1]}
-function updateShoe(){var g=document.querySelector(".gender-btn.active").dataset.gender,v=parseFloat($("shoeV").value),f=$("shoeF").value,t=$("shoeT").value;if(isNaN(v)){$("shoeR").value="—";$("shoeAll").value="—";return}var r=cs(v,f,t,g);$("shoeR").value=r!=null?String(r):"—";var a={};["cn","eu","us","uk","jp"].forEach(function(s){var z=cs(v,f,s,g);a[s]=z!=null?String(z):"—"});$("shoeAll").value="CN:"+a.cn+" EU:"+a.eu+" US:"+a.us+" UK:"+a.uk+" JP:"+a.jp}
-function buildChart(g){var d=sd(g==="kids"?"male":g),tb=$("shoeTbody");if(!tb)return;var n=Math.min(d.cn.length,d.eu.length,d.us.length,d.uk.length,d.jp.length),h="";for(var i=0;i<n;i++){h+="<tr><td>"+(d.cn[i]!=null?d.cn[i]:"—")+"</td><td>"+(d.eu[i]!=null?d.eu[i]:"—")+"</td><td>"+(d.us[i]!=null?d.us[i]:"—")+"</td><td>"+(d.uk[i]!=null?d.uk[i]:"—")+"</td><td>"+(d.jp[i]!=null?d.jp[i]:"—")+"</td></tr>"}tb.innerHTML=h}
+function updateShoe(){var g=document.querySelector(".gender-btn.active").dataset.gender,v=parseFloat($("shoeV").value),f=$("shoeF").value,t=$("shoeT").value;if(isNaN(v)){$("shoeR").value="鈥?;$("shoeAll").value="鈥?;return}var r=cs(v,f,t,g);$("shoeR").value=r!=null?String(r):"鈥?;var a={};["cn","eu","us","uk","jp"].forEach(function(s){var z=cs(v,f,s,g);a[s]=z!=null?String(z):"鈥?});$("shoeAll").value="CN:"+a.cn+" EU:"+a.eu+" US:"+a.us+" UK:"+a.uk+" JP:"+a.jp}
+function buildChart(g){var d=sd(g==="kids"?"male":g),tb=$("shoeTbody");if(!tb)return;var n=Math.min(d.cn.length,d.eu.length,d.us.length,d.uk.length,d.jp.length),h="";for(var i=0;i<n;i++){h+="<tr><td>"+(d.cn[i]!=null?d.cn[i]:"鈥?)+"</td><td>"+(d.eu[i]!=null?d.eu[i]:"鈥?)+"</td><td>"+(d.us[i]!=null?d.us[i]:"鈥?)+"</td><td>"+(d.uk[i]!=null?d.uk[i]:"鈥?)+"</td><td>"+(d.jp[i]!=null?d.jp[i]:"鈥?)+"</td></tr>"}tb.innerHTML=h}
 
 // Clothing
-function updateClo(){var c=document.querySelector("#cloCat").value,v=parseFloat($("cloV").value);if(isNaN(v)){["cloCN","cloUS","cloEU","cloUK","cloINTL","cloJP"].forEach(function(i){$(i).value="—"});return}var b=null;for(var i=0;i<C[c].r.length;i++){var r=C[c].r[i];if(v>=r.cn[0]&&v<=r.cn[1]){b=r;break}}if(!b){var md=Infinity;for(var i=0;i<C[c].r.length;i++){var r=C[c].r[i],d=Math.abs(v-(r.cn[0]+r.cn[1])/2);if(d<md){md=d;b=r}}}if(b){$("cloCN").value=b.cn[0]+"-"+b.cn[1];$("cloUS").value=b.us;$("cloEU").value=b.eu[0]+"-"+b.eu[1];$("cloUK").value=b.uk;$("cloINTL").value=b.l;$("cloJP").value=b.jp}}
+function updateClo(){var c=document.querySelector("#cloCat").value,v=parseFloat($("cloV").value);if(isNaN(v)){["cloCN","cloUS","cloEU","cloUK","cloINTL","cloJP"].forEach(function(i){$(i).value="鈥?});return}var b=null;for(var i=0;i<C[c].r.length;i++){var r=C[c].r[i];if(v>=r.cn[0]&&v<=r.cn[1]){b=r;break}}if(!b){var md=Infinity;for(var i=0;i<C[c].r.length;i++){var r=C[c].r[i],d=Math.abs(v-(r.cn[0]+r.cn[1])/2);if(d<md){md=d;b=r}}}if(b){$("cloCN").value=b.cn[0]+"-"+b.cn[1];$("cloUS").value=b.us;$("cloEU").value=b.eu[0]+"-"+b.eu[1];$("cloUK").value=b.uk;$("cloINTL").value=b.l;$("cloJP").value=b.jp}}
 
 // Units
-function uc(i,f,t,r,tab){var v=parseFloat($(i).value);if(isNaN(v)){$(r).value="—";return}$(r).value=String(+(v*tab[$(f).value]/tab[$(t).value]).toFixed(4))}
-function temp(){var v=parseFloat($("tempV").value);if(isNaN(v)){$("tempR").value="—";return}var f=$("tempF").value,t=$("tempT").value,c=f==="c"?v:(v-32)*5/9;$("tempR").value=(t==="c"?c:c*9/5+32).toFixed(1)+"°"+(t==="c"?"C":"F")}
+function uc(i,f,t,r,tab){var v=parseFloat($(i).value);if(isNaN(v)){$(r).value="鈥?;return}$(r).value=String(+(v*tab[$(f).value]/tab[$(t).value]).toFixed(4))}
+function temp(){var v=parseFloat($("tempV").value);if(isNaN(v)){$("tempR").value="鈥?;return}var f=$("tempF").value,t=$("tempT").value,c=f==="c"?v:(v-32)*5/9;$("tempR").value=(t==="c"?c:c*9/5+32).toFixed(1)+"掳"+(t==="c"?"C":"F")}
 
 // Init
 document.addEventListener("DOMContentLoaded",function(){
@@ -221,3 +218,4 @@ $("shoeSwap").addEventListener("click",function(){var f=$("shoeF"),t=$("shoeT");
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx" crossorigin="anonymous"></script>
 </body></html>
+
