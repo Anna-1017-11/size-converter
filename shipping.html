@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>跨境运费估算器 - DHL/FedEx/UPS/空运/海运比价</title>
-<meta name="description" content="跨境电商专业运费估算工具，支持DHL、FedEx、UPS国际快递比价，含体积重、燃油附加费和时效参考。">
+<title>跨境运费估算器专业版 - DHL/FedEx/UPS/TNT/EMS/空海运</title>
+<meta name="description" content="跨境电商专业运费估算工具，DHL、FedEx、UPS、TNT、EMS国际快递比价，含体积重、燃油附加费、保险和方案推荐。">
 <style>
 :root{--c1:#1a1a2e;--c2:#00b894;--c3:#e0f7f4;--c4:#f5f6f8;--r:12px;--s:0 2px 8px rgba(0,0,0,.06)}
 *,:after,:before{box-sizing:border-box;margin:0;padding:0}
@@ -34,31 +34,33 @@ header p{font-size:.8rem;color:#888;margin-top:3px}
 .range-row input[type=range]{flex:1}
 .range-row .val{font-size:.8rem;font-weight:600;color:var(--c2);min-width:50px;text-align:right}
 
-/* Result grid */
+/* Cards */
 .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 .method-card{border:1.5px solid #e8eaf0;border-radius:10px;padding:12px;text-align:center;transition:all .3s;position:relative;background:#fff}
 .method-card:hover{border-color:var(--c2);box-shadow:0 2px 12px rgba(0,0,0,.08);transform:translateY(-1px)}
 .method-card .name{font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:4px}
-.method-card .price{font-size:1.25rem;font-weight:800;color:var(--c2);transition:color .3s}
-.method-card .detail{font-size:.68rem;color:#888;margin-top:2px}
+.method-card .price{font-size:1.25rem;font-weight:800;color:var(--c2)}
+.method-card .detail{font-size:.68rem;color:#888;margin-top:2px;line-height:1.4}
 .method-card .tags{margin-top:5px;display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
 .tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.62rem;font-weight:600}
 .tag.fast{background:#ffeaa7;color:#b7950b}
 .tag.normal{background:#dfe6e9;color:#636e72}
 .tag.slow{background:#fab1a0;color:#c0392b}
 .tag.best{background:#55efc4;color:#006266}
-.tag.badge-best{position:absolute;top:-8px;right:-8px;background:var(--c2);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.badge-best{position:absolute;top:-8px;right:-8px;background:var(--c2);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 
-/* Comparison table */
+/* Table */
 .comp-table{font-size:.72rem;width:100%;margin-top:8px}
 .comp-table th{background:#f0f2f7;padding:5px 6px;text-align:center;border:1px solid #e8eaf0;font-weight:600;color:#666;font-size:.65rem}
 .comp-table td{padding:4px 6px;text-align:center;border:1px solid #eef0f7}
 .comp-table tr:nth-child(even) td{background:#fafbfc}
-.comp-table .best-row td{background:#e8f8f5;font-weight:600}
-.comp-table .vweight{color:#888;font-size:.68rem;margin-top:4px;background:#f8f9fc;padding:4px 8px;border-radius:4px;display:inline-block}
+.comp-table tr.best-row td{background:#e8f8f5;font-weight:600;color:var(--c1)}
+.comp-table .carrier-logo{display:inline-block;padding:0 6px;border-radius:3px;font-size:.6rem;font-weight:700;color:#fff;margin-right:3px}
+
+.vw-info{font-size:.75rem;background:var(--c3);color:#00695c;padding:8px 12px;border-radius:8px;margin-top:8px;line-height:1.6}
+.vw-info strong{margin-right:4px}
 
 .tip{font-size:.75rem;color:#888;background:#f8f9fc;padding:8px 12px;border-radius:8px;margin-top:8px;line-height:1.5}
-
 footer{text-align:center;padding:18px 0;color:#aaa;font-size:.75rem}
 footer a{color:#aaa;text-decoration:none}
 
@@ -71,10 +73,9 @@ footer a{color:#aaa;text-decoration:none}
 </head>
 <body>
 <div class="container">
-
 <header>
 <h1>跨境运费估算器</h1>
-<p>DHL · FedEx · UPS · 空运 · 海运 · 铁路 — 含燃油附加费和体积重</p>
+<p>DHL · FedEx · UPS · TNT · EMS · 空运 · 海运 · 铁路 — 专业级比价</p>
 <div class="nav-bar">
 <a href="./"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18l1-5-3-6-9 2-3 5H3"/><path d="M3 17v2"/><path d="M21 17v2"/></svg>尺寸换算</a>
 <a href="./duty.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>关税计算</a>
@@ -83,26 +84,18 @@ footer a{color:#aaa;text-decoration:none}
 </header>
 
 <div class="card">
-<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>运费计算</h2>
+<h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>运费报价</h2>
 <div class="row">
 <div class="g"><label>始发地</label>
-<select id="fromP">
-<option value="sz">🇨🇳 深圳</option><option value="sh">🇨🇳 上海</option><option value="gz">🇨🇳 广州</option>
-<option value="nb">🇨🇳 宁波</option><option value="bj">🇨🇳 北京</option><option value="yw">🇨🇳 义乌</option>
-<option value="hk">🇭🇰 香港</option>
-</select>
-</div>
+<select id="fromP"><option value="sz">🇨🇳 深圳</option><option value="sh">🇨🇳 上海</option><option value="gz">🇨🇳 广州</option><option value="nb">🇨🇳 宁波</option><option value="bj">🇨🇳 北京</option><option value="yw">🇨🇳 义乌</option><option value="hk">🇭🇰 香港</option></select></div>
 <div class="g"><label>目的地</label>
 <select id="toC">
 <optgroup label="北美"><option value="us">🇺🇸 美国</option><option value="ca">🇨🇦 加拿大</option><option value="mx">🇲🇽 墨西哥</option></optgroup>
 <optgroup label="欧洲"><option value="eu">🇪🇺 欧盟</option><option value="uk">🇬🇧 英国</option><option value="ch">🇨🇭 瑞士</option></optgroup>
-<optgroup label="亚太"><option value="jp">🇯🇵 日本</option><option value="kr">🇰🇷 韩国</option><option value="au">🇦🇺 澳大利亚</option>
-<option value="sg">🇸🇬 新加坡</option><option value="my">🇲🇾 马来西亚</option><option value="th">🇹🇭 泰国</option>
-<option value="vn">🇻🇳 越南</option><option value="ph">🇵🇭 菲律宾</option><option value="id">🇮🇩 印尼</option></optgroup>
+<optgroup label="亚太"><option value="jp">🇯🇵 日本</option><option value="kr">🇰🇷 韩国</option><option value="au">🇦🇺 澳大利亚</option><option value="sg">🇸🇬 新加坡</option><option value="my">🇲🇾 马来西亚</option><option value="th">🇹🇭 泰国</option><option value="vn">🇻🇳 越南</option><option value="ph">🇵🇭 菲律宾</option><option value="id">🇮🇩 印尼</option></optgroup>
 <optgroup label="中东非洲"><option value="ae">🇦🇪 阿联酋</option><option value="sa">🇸🇦 沙特</option><option value="za">🇿🇦 南非</option></optgroup>
 <optgroup label="南美"><option value="br">🇧🇷 巴西</option><option value="cl">🇨🇱 智利</option></optgroup>
-</select>
-</div>
+</select></div>
 </div>
 <div class="row four">
 <div class="g"><label>重量 (kg)</label><input type="number" id="wgt" value="5" min="0.1" step="0.1"></div>
@@ -111,36 +104,44 @@ footer a{color:#aaa;text-decoration:none}
 <div class="g"><label>高 (cm)</label><input type="number" id="hei" value="15" min="1" step="1"></div>
 </div>
 <div class="row three">
-<div class="g"><label>体积重系数</label><select id="dimFactor">
-<option value="5000">5000（DHL/FedEx标准）</option>
-<option value="6000">6000（UPS部分线路）</option>
-<option value="4000">4000（小包专线）</option>
+<div class="g"><label>体积重系数</label><select id="dimF">
+<option value="5000">5000 (DHL/FedEx/TNT)</option>
+<option value="6000">6000 (UPS空运)</option>
+<option value="7000">7000 (EMS)</option>
+<option value="4000">4000 (小包专线)</option>
 </select></div>
 <div class="g"><label>燃油附加费</label>
 <div class="range-row">
-<input type="range" id="fuel" min="10" max="35" value="18" step="0.5">
+<input type="range" id="fuel" min="5" max="35" value="18" step="0.5">
 <span class="val" id="fuelVal">18.0%</span>
 </div>
 </div>
 <div class="g"><label>旺季附加费</label>
-<select id="peak">
-<option value="0">无</option><option value="5">+5%（11-12月）</option><option value="10">+10%（春节前）</option>
-</select>
+<select id="peak"><option value="0">无</option><option value="5">+5% (11-12月)</option><option value="10">+10% (春节前)</option></select></div>
 </div>
+<div class="row">
+<div class="g"><label>服务级别</label>
+<select id="svcLvl"><option value="express" selected>国际快递 (Express)</option><option value="economy">经济服务 (Economy)</option><option value="standard">标准服务 (Standard)</option></select></div>
+<div class="g"><label>📍 地址类型</label>
+<select id="addrType"><option value="com" selected>商业地址</option><option value="res">住宅地址 (+$28)</option></select></div>
+</div>
+<div class="row three">
+<div class="g"><label>📦 件数</label><input type="number" id="pcs" value="1" min="1" step="1"></div>
+<div class="g"><label>🛡️ 保险</label>
+<select id="insOpt"><option value="0">不需要</option><option value="0.5">保额 0.5%</option><option value="1">保额 1.0%</option><option value="1.5">保额 1.5%</option></select></div>
+<div class="g"><label>保额 (USD)</label><input type="number" id="insAmt" value="200" min="0" step="100"></div>
 </div>
 
-<div id="vwInfo" class="tip" style="background:#e0f7f4;color:#00695c"><strong>📐 体积重：</strong> <span id="vwText">计算中...</span></div>
+<div class="vw-info">📐 <strong>体积重</strong> <span id="vwText">计算中...</span></div>
 
 <div class="result-grid" id="resultGrid"></div>
 
 <div style="overflow-x:auto;margin-top:8px">
-<table class="comp-table" id="compTable">
-<thead><tr><th>方式</th><th>承运商</th><th>估算费用</th><th>时效</th><th>体积重</th><th>计费重</th></tr></thead>
-<tbody id="compBody"></tbody>
-</table>
+<table class="comp-table"><thead><tr><th>承运商</th><th>服务</th><th>估算运费</th><th>附加费</th><th>总额</th><th>时效</th><th>计费重</th></tr></thead>
+<tbody id="compBody"></tbody></table>
 </div>
 
-<div class="tip"><strong>⚠️ 重要提醒：</strong>以上为预估算价格，含燃油附加费和旺季附加费。实际运费以物流商最终报价为准。体积重=长×宽×高÷系数，计费重量取实际重量与体积重的较大值。</div>
+<div class="tip"><strong>⚠️ 重要提醒：</strong>以上为预估算价格。DHL/FedEx/UPS 燃油附加费每周变动。住宅地址加收$28。实际运费以物流商最终报价为准。</div>
 </div>
 
 </div>
@@ -148,129 +149,149 @@ footer a{color:#aaa;text-decoration:none}
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx" crossorigin></script>
 <script>
-// Zone mapping: country -> zone number (for express rates)
-var ZONES = {us:4,ca:4,mx:8,eu:5,uk:6,ch:5,jp:2,kr:2,au:3,sg:2,my:2,th:2,vn:2,ph:2,id:2,ae:7,sa:7,za:7,br:8,cl:8};
-// Express rates per kg at weight breaks [<21kg, 21-45kg, 45-70kg, 70-100kg, 100-300kg]
-// Key: zone_index -> {dhl, fedex, ups}
-var EXPRATES = {
-1:{dhl:[22,18,15,13,11],fedex:[20,16,14,12,10],ups:[21,17,15,13,11]},
-2:{dhl:[18,14,12,10,9],fedex:[16,13,11,9,8],ups:[17,14,12,10,9]},
-3:{dhl:[20,16,13,11,10],fedex:[18,14,12,10,9],ups:[19,15,13,11,10]},
-4:{dhl:[28,22,18,16,14],fedex:[25,20,17,15,13],ups:[26,21,18,16,14]},
-5:{dhl:[26,20,17,15,13],fedex:[23,18,15,13,12],ups:[24,19,16,14,13]},
-6:{dhl:[27,21,18,16,14],fedex:[24,19,16,14,13],ups:[25,20,17,15,14]},
-7:{dhl:[30,24,20,18,16],fedex:[27,22,18,16,14],ups:[28,23,19,17,15]},
-8:{dhl:[35,28,24,22,20],fedex:[32,26,22,20,18],ups:[33,27,23,21,19]}
+// Zone mapping: country -> zone (1-8)
+var Z = {us:4,ca:4,mx:8,eu:5,uk:6,ch:5,jp:2,kr:2,au:3,sg:2,my:2,th:2,vn:2,ph:2,id:2,ae:7,sa:7,za:7,br:8,cl:8};
+
+// Express rates per kg by weight break [<21, 21-45, 45-70, 70-100, 100-300]
+// Each carrier: [Zone][break_index]
+var DR = {
+  dhl:{1:[22,18,15,13,11],2:[18,14,12,10,9],3:[20,16,13,11,10],4:[28,22,18,16,14],5:[26,20,17,15,13],6:[27,21,18,16,14],7:[30,24,20,18,16],8:[35,28,24,22,20]},
+  fedex:{1:[20,16,14,12,10],2:[16,13,11,9,8],3:[18,14,12,10,9],4:[25,20,17,15,13],5:[23,18,15,13,12],6:[24,19,16,14,13],7:[27,22,18,16,14],8:[32,26,22,20,18]},
+  ups:{1:[21,17,15,13,11],2:[17,14,12,10,9],3:[19,15,13,11,10],4:[26,21,18,16,14],5:[24,19,16,14,13],6:[25,20,17,15,14],7:[28,23,19,17,15],8:[33,27,23,21,19]},
+  tnt:{1:[19,15,13,11,10],2:[15,12,10,9,8],3:[17,13,11,10,9],4:[24,19,16,14,12],5:[22,17,15,13,12],6:[23,18,16,14,13],7:[26,21,18,16,14],8:[30,24,21,19,17]},
+  ems:{1:[16,13,11,10,9],2:[13,10,9,8,7],3:[15,12,10,9,8],4:[22,18,15,13,12],5:[20,16,14,12,11],6:[21,17,15,13,12],7:[24,19,17,15,13],8:[28,22,19,17,15]}
 };
-// Air freight: per kg by weight break
-var AIRRATES = {1:{a45:6,a100:4.5,a300:3.5,a500:2.8},2:{a45:5,a100:3.8,a300:3,a500:2.5},3:{a45:6.5,a100:5,a300:4,a500:3.2},
-4:{a45:8,a100:6.5,a300:5,a500:4},5:{a45:7,a100:5.5,a300:4.5,a500:3.5},6:{a45:7.5,a100:6,a300:5,a500:4},
-7:{a45:9,a100:7,a300:5.5,a500:4.5},8:{a45:12,a100:9,a300:7,a500:5.5}};
+
+// Air freight per kg by weight break
+var AR = {1:{a45:6,a100:4.5,a300:3.5,a500:2.8},2:{a45:5,a100:3.8,a300:3,a500:2.5},3:{a45:6.5,a100:5,a300:4,a500:3.2},4:{a45:8,a100:6.5,a300:5,a500:4},5:{a45:7,a100:5.5,a300:4.5,a500:3.5},6:{a45:7.5,a100:6,a300:5,a500:4},7:{a45:9,a100:7,a300:5.5,a500:4.5},8:{a45:12,a100:9,a300:7,a500:5.5}};
+
 // Sea LCL per CBM
-var SEARATES = {us:85,ca:90,eu:65,uk:70,jp:45,kr:40,au:60,sg:40,my:45,th:45,vn:45,ph:50,id:55,ae:55,sa:60,za:80,br:120,cl:100,mx:95,ch:70};
+var SR = {us:85,ca:90,eu:65,uk:70,jp:45,kr:40,au:60,sg:40,my:45,th:45,vn:45,ph:50,id:55,ae:55,sa:60,za:80,br:120,cl:100,mx:95,ch:70};
+
 // Rail per kg (Europe only)
-var RAILRATES = {eu:4.5,uk:4.8,ch:4.5};
+var RR = {eu:4.5,uk:4.8,ch:4.5};
 
-var $ = function(i){return document.getElementById(i)};
-var CARRIERS = [
-  {id:"dhl",name:"DHL Express",color:"#ffcc00",mode:"express",divisor:5000},
-  {id:"fedex",name:"FedEx",color:"#4d148c",mode:"express",divisor:5000},
-  {id:"ups",name:"UPS",color:"#351c15",mode:"express",divisor:6000},
-  {id:"air",name:"空运",color:"#00b894",mode:"air",divisor:5000},
-  {id:"sea",name:"海运 LCL",color:"#0984e3",mode:"sea",divisor:0},
-  {id:"rail",name:"铁路",color:"#6c5ce7",mode:"rail",divisor:5000}
-];
+// Economy discounts relative to express
+var ECO = {dhl:0.7,fedex:0.75,ups:0.73,tnt:0.72,ems:0.85};
 
-function calc() {
-  var to=$(toC).value,w=parseFloat($(wgt).value)||0,l=parseFloat($(len).value)||0,wi=parseFloat($(wid).value)||0,h=parseFloat($(hei).value)||0;
-  var dim=parseInt($(dimFactor).value),fuel=parseFloat($(fuel).value)/100,peak=parseFloat($(peak).value)/100;
-  var zone=ZONES[to]||4;
-  var volW=l*wi*h/dim;
-  var chargeW=Math.max(w,volW);
+function $(i){return document.getElementById(i)}
+function fmt(n){return "$"+n.toFixed(0).replace(/B(?=(d{3})+(?!d))/g,",")}
+
+function calc(){
+  var to=$("toC").value,w=parseFloat($("wgt").value)||0,l=parseFloat($("len").value)||0,wi=parseFloat($("wid").value)||0,h=parseFloat($("hei").value)||0;
+  var dim=parseInt($("dimF").value),fuel=parseFloat($("fuel").value)/100,peak=parseFloat($("peak").value)/100;
+  var svc=$("svcLvl").value,addr=$("addrType").value,insOpt=parseFloat($("insOpt").value)/100,insAmt=parseFloat($("insAmt").value)||0,pcs=parseInt($("pcs").value)||1;
+  var zone=Z[to]||4,resAdd=addr==="res"?28:0;
+  var volW=l*wi*h/dim,chargeW=Math.max(w,volW)*pcs,wAct=w*pcs;
   var peakMul=1+peak,fuelMul=1+fuel;
-  
-  // Volumetric weight info
-  var vwMode={5000:"DHL/FedEx标准",6000:"UPS标准",4000:"小包专线"};
-  $("vwText").innerHTML="实际重 "+w.toFixed(1)+"kg / 体积重 "+volW.toFixed(1)+"kg (系数"+dim+") / 计费重 <strong>"+chargeW.toFixed(1)+"kg</strong>";
+  var svcTxt={express:"Express",economy:"Economy",standard:"Standard"};
+  var svcTime={express:{fast:"3-5天",eco:"4-7天",std:"5-10天"},economy:{fast:"5-8天",eco:"6-10天",std:"8-14天"},standard:{fast:"7-12天",eco:"8-15天",std:"10-20天"}};
 
-  // Calculate weight break
-  function wb(w) {if(w<=21) return 0; if(w<=45) return 1; if(w<=70) return 2; if(w<=100) return 3; return 4;}
+  // Volumetric weight display
+  $("vwText").innerHTML="实际重 "+wAct.toFixed(1)+"kg / 体积重 "+volW.toFixed(1)+"kg (系数"+dim+") / 计费重 <strong>"+chargeW.toFixed(1)+"kg</strong>";
+
+  // Weight break
+  function wb(x){if(x<=21)return 0;if(x<=45)return 1;if(x<=70)return 2;if(x<=100)return 3;return 4}
   var idx=wb(chargeW);
   
-  var results = [];
-  
-  // DHL, FedEx, UPS
-  if (zone && EXPRATES[zone]) {
-    var er=EXPRATES[zone];
-    var dhlRate=er.dhl[idx]*chargeW*fuelMul*peakMul;
-    var fedexRate=er.fedex[idx]*chargeW*fuelMul*peakMul;
-    var upsRate=chargeW<=21?er.ups[idx]*chargeW*fuelMul*peakMul:(er.ups[Math.min(idx, er.ups.length-1)]*chargeW*fuelMul*peakMul);
-    
-    results.push({c:"DHL Express",p:dhlRate,time:"3-6天",tag:"fast",tagName:"最快",d:5000});
-    results.push({c:"FedEx",p:fedexRate,time:"4-7天",tag:"fast",tagName:"快速",d:5000});
-    results.push({c:"UPS",p:upsRate,time:"4-7天",tag:"fast",tagName:"快速",d:6000});
+  // Freight calculation
+  function calcFreight(rate,div){
+    var vw=l*wi*h/div,ch=Math.max(w,vw)*pcs;
+    return ch*rate*fuelMul*peakMul;
   }
+
+  var results=[];
   
+  // DHL
+  if(zone&&DR.dhl[zone]){
+    var base=DR.dhl[zone][idx]*chargeW*fuelMul;
+    var total=base+resAdd;
+    if(insOpt>0&&insAmt>0)total+=insAmt*insOpt;
+    results.push({c:"DHL Express",s:svcTxt[svc],p:svc==="economy"?base*ECO.dhl+resAdd:svc==="express"?total:total*0.9,time:svcTime[svc].fast,clr:"#ffcc00",tg:"fast",tgN:"最快",d:5000});
+  }
+  // FedEx
+  if(zone&&DR.fedex[zone]){
+    var base=DR.fedex[zone][idx]*chargeW*fuelMul;
+    var total=base+resAdd;
+    if(insOpt>0&&insAmt>0)total+=insAmt*insOpt;
+    results.push({c:"FedEx",s:svcTxt[svc],p:svc==="economy"?base*ECO.fedex+resAdd:svc==="express"?total:total*0.92,time:svcTime[svc].fast,clr:"#4d148c",tg:"fast",tgN:"快速",d:5000});
+  }
+  // UPS
+  if(zone&&DR.ups[zone]){
+    var base=DR.ups[zone][idx]*chargeW*fuelMul;
+    var total=base+resAdd;
+    if(insOpt>0&&insAmt>0)total+=insAmt*insOpt;
+    results.push({c:"UPS",s:svcTxt[svc],p:svc==="economy"?base*ECO.ups+resAdd:svc==="express"?total:total*0.92,time:svcTime[svc].fast,clr:"#351c15",tg:"fast",tgN:"快速",d:6000});
+  }
+  // TNT
+  if(zone&&DR.tnt[zone]){
+    var base=DR.tnt[zone][idx]*chargeW*fuelMul;
+    var total=base+resAdd;
+    if(insOpt>0&&insAmt>0)total+=insAmt*insOpt;
+    results.push({c:"TNT",s:svcTxt[svc],p:svc==="economy"?base*ECO.tnt+resAdd:svc==="express"?total:total*0.9,time:svcTime[svc].eco,clr:"#e30613",tg:"normal",tgN:"经济",d:5000});
+  }
+  // EMS
+  if(zone&&DR.ems[zone]){
+    var emsIdx=Math.min(idx,DR.ems[zone].length-1);
+    var base=DR.ems[zone][emsIdx]*chargeW*fuelMul;
+    var total=base+resAdd;
+    if(insOpt>0&&insAmt>0)total+=insAmt*insOpt;
+    results.push({c:"EMS",s:svcTxt[svc],p:svc==="economy"?base*ECO.ems+resAdd:svc==="express"?total:total*0.88,time:svcTime[svc].std,clr:"#2d3436",tg:"normal",tgN:"经济",d:7000});
+  }
   // Air freight
-  if (AIRRATES[zone]) {
-    var ar=AIRRATES[zone];var airRate;
-    if(chargeW>=500) airRate=ar.a500;else if(chargeW>=300) airRate=ar.a300;else if(chargeW>=100) airRate=ar.a100;else airRate=ar.a45;
-    airRate=airRate*chargeW*fuelMul;
-    // Plus document/handling fee
-    airRate+=25;
-    results.push({c:"空运 (普货)",p:airRate,time:"7-14天",tag:"normal",tagName:"经济",d:5000});
+  if(AR[zone]&&chargeW>=10){
+    var ar=AR[zone];var airRate=chargeW>=500?ar.a500:chargeW>=300?ar.a300:chargeW>=100?ar.a100:ar.a45;
+    var base=airRate*chargeW*fuelMul+25;
+    results.push({c:"空运普货",s:"经济",p:base+resAdd,time:"7-14天",clr:"#00b894",tg:"normal",tgN:"经济",d:5000});
   }
-  
-  // Sea freight
-  if (SEARATES[to]) {
+  // Sea LCL
+  if(SR[to]){
     var cbm=l*wi*h/1000000;if(cbm<0.5)cbm=0.5;
-    var seaRate=SEARATES[to]*cbm+35;
-    results.push({c:"海运 LCL",p:seaRate,time:"30-45天",tag:"slow",tagName:"最省",d:0});
+    var sea=SR[to]*cbm+35+resAdd;
+    results.push({c:"海运LCL",s:"整柜/拼箱",p:sea,time:"25-40天",clr:"#0984e3",tg:"slow",tgN:"最省",d:0});
   }
-  
-  // Rail freight
-  if (RAILRATES[to]) {
-    var railRate=RAILRATES[to]*chargeW+20;
-    results.push({c:"铁路运输",p:railRate,time:"15-22天",tag:"best",tagName:"性价比",d:5000});
+  // Rail
+  if(RR[to]){
+    var rail=RR[to]*chargeW+20+resAdd;
+    results.push({c:"铁路运输",s:"中欧班列",p:rail,time:"15-22天",clr:"#6c5ce7",tg:"best",tgN:"性价比",d:5000});
   }
-  
-  // Find best
+
+  // Sort and mark best
   results.sort(function(a,b){return a.p-b.p});
-  if(results.length>0) results[0].best=true;
-  
+  if(results.length>0)results[0].best=true;
+
   // Render cards
-  var grid=$("resultGrid");
-  var html="";
+  var grid=$("resultGrid"),cHtml="";
   for(var i=0;i<results.length;i++){
     var r=results[i];
-    var fm="$"+r.p.toFixed(0).replace(/B(?=(d{3})+(?!d))/g,",");
-    var volNote=r.d>0?"<span class=tag\ info>体"+(chargeW*1).toFixed(1)+"kg</span>":"<span class=tag\ info>体"+cbm.toFixed(2)+"m³</span>";
-    html+='<div class="method-card">';
-    if(r.best) html+='<div class="badge-best">★</div>';
-    html+='<div class="name">'+r.c+'</div>';
-    html+='<div class="price">'+fm+'</div>';
-    html+='<div class="detail">'+r.time+' · 门到门</div>';
-    html+='<div class="tags"><span class="tag '+r.tag+'">'+r.tagName+'</span></div>';
-    html+='</div>';
+    cHtml+='<div class="method-card"'+(r.best?' style="border-color:var(--c2)"':'')+'>';
+    if(r.best)cHtml+='<div class="badge-best">★</div>';
+    cHtml+='<div class="name" style="color:'+r.clr+'">'+r.c+"</div>";
+    cHtml+='<div class="price">'+fmt(r.p)+"</div>";
+    cHtml+='<div class="detail">'+r.s+" · "+r.time+'</div>';
+    cHtml+='<div class="tags"><span class="tag '+r.tg+'">'+r.tgN+"</span></div></div>";
   }
-  grid.innerHTML=html;
-  
-  // Render comparison table
-  var tb=$("compBody");
-  var tr="";
+  grid.innerHTML=cHtml;
+
+  // Render table
+  var tb=$("compBody"),tHtml="";
   for(var i=0;i<results.length;i++){
     var r=results[i];
-    var fm="$"+r.p.toFixed(0).replace(/B(?=(d{3})+(?!d))/g,",");
-    var vwNote=r.d>0?(chargeW*1).toFixed(1)+"kg":"—";
-    var cls=r.best?"class=best-row":"";
-    tr+="<tr "+cls+"><td>"+(r.best?"★ 推荐":"")+"</td><td>"+r.c+"</td><td>"+fm+"</td><td>"+r.time+"</td><td>"+vwNote+"</td><td>"+chargeW.toFixed(1)+"kg</td></tr>";
+    var total=r.p,transport=total;
+    var extras="";if(fuel>0)extras+="燃油+"+(fuel*100).toFixed(0)+"% ";if(peak>0)extras+="旺季+"+(peak*100).toFixed(0)+"% ";if(resAdd>0)extras+="住宅+"+resAdd;if(extras==="")extras="无";
+    tHtml+='<tr'+(r.best?' class="best-row"':'')+'>';
+    tHtml+='<td><span class="carrier-logo" style="background:'+r.clr+'">'+r.c.charAt(0)+"</span>"+r.c+"</td>";
+    tHtml+="<td>"+r.s+"</td><td>"+fmt(total)+"</td><td style='font-size:.65rem;color:#888'>"+extras+"</td>";
+    tHtml+="<td>"+fmt(total)+"</td><td>"+r.time+"</td>";
+    tHtml+="<td>"+chargeW.toFixed(1)+"kg</td></tr>";
   }
-  tb.innerHTML=tr;
+  tb.innerHTML=tHtml;
 }
 
 document.addEventListener("DOMContentLoaded",function(){
   calc();
-  ["fromP","toC","wgt","len","wid","hei","dimFactor","fuel","peak"].forEach(function(i){$(i).addEventListener("input",calc);$(i).addEventListener("change",calc)});
+  var inputs=["fromP","toC","wgt","len","wid","hei","dimF","peak","svcLvl","addrType","pcs","insOpt","insAmt"];
+  inputs.forEach(function(i){$(i).addEventListener("input",calc);$(i).addEventListener("change",calc)});
   $("fuel").addEventListener("input",function(){var v=parseFloat(this.value);$("fuelVal").textContent=v.toFixed(1)+"%";calc()});
 });
 </script>
