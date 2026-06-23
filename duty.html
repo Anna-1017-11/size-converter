@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>跨境关税计算器 - 进口税费估算工具</title>
+<meta name="description" content="跨境电商关税计算器，估算中国出口至全球主要市场的进口关税和增值税。">
+<style>
+:root{--c1:#1a1a2e;--c2:#4f6ef7;--c3:#eef0f7}
+*,:after,:before{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f5f6f8;color:var(--c1);line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:800px;margin:0 auto;padding:0 16px}
+header{text-align:center;padding:28px 0 12px}
+header h1{font-size:1.3rem;font-weight:700;letter-spacing:-.3px}
+header p{margin-top:4px;font-size:.82rem;color:#888}
+.nav-bar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.nav-bar a{text-decoration:none;padding:5px 12px;border-radius:16px;background:#fff;color:#888;font-size:.78rem;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:all .2s}
+.nav-bar a:hover,.nav-bar a.active{background:var(--c2);color:#fff}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);padding:20px;margin-bottom:14px}
+.card h2{font-size:1rem;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:7px}
+.card h2 svg{width:18px;height:18px;color:var(--c2);flex-shrink:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.row.three{grid-template-columns:1fr 1fr 1fr}
+.g{display:flex;flex-direction:column;gap:3px}
+.g label{font-size:.75rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.3px}
+.g input,.g select{padding:9px 11px;border:1.5px solid #e8eaf0;border-radius:8px;font-size:.9rem;background:#fafbfc;outline:none;width:100%;transition:all .2s}
+.g input:focus,.g select:focus{border-color:var(--c2);background:#fff;box-shadow:0 0 0 3px rgba(79,110,247,.1)}
+.g input[readonly]{font-weight:700;color:var(--c1);cursor:default;background:#f8f9fc;text-align:center;font-size:1rem}
+.result-box{background:var(--c3);border-radius:10px;padding:16px;text-align:center;margin-top:10px}
+.result-box .big{font-size:1.8rem;font-weight:800;color:var(--c2)}
+.result-box .label{font-size:.82rem;color:#888;margin-top:4px}
+.result-detail{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.result-item{background:#fff;border-radius:8px;padding:10px;text-align:center}
+.result-item .val{font-size:1.1rem;font-weight:700;color:var(--c1)}
+.result-item .lbl{font-size:.72rem;color:#888;margin-top:2px}
+.tip{font-size:.78rem;color:#888;background:#f8f9fc;padding:8px 12px;border-radius:8px;margin-top:10px;line-height:1.5}
+footer{text-align:center;padding:20px 0;color:#aaa;font-size:.78rem}
+footer a{color:#aaa;text-decoration:none}
+@media(max-width:600px){.row,.row.three{grid-template-columns:1fr}.result-detail{grid-template-columns:1fr 1fr}.card{padding:14px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>跨境关税计算器</h1>
+<p>估算中国出口至全球主要市场的进口关税和增值税</p>
+<div class="nav-bar">
+<a href="./">📐 尺寸换算</a>
+<a href="./duty.html" class="active">💰 关税</a>
+<a href="./shipping.html">🚚 运费</a>
+</div>
+</header>
+
+<div class="card">
+<h2><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>关税计算</h2>
+<div class="row">
+<div class="g"><label>出口国</label><select id="fromC"><option value="cn" selected>🇨🇳 中国</option></select></div>
+<div class="g"><label>进口国</label>
+<select id="toC">
+<option value="us">🇺🇸 美国</option><option value="eu">🇪🇺 欧盟</option><option value="uk">🇬🇧 英国</option>
+<option value="jp">🇯🇵 日本</option><option value="kr">🇰🇷 韩国</option><option value="au">🇦🇺 澳大利亚</option>
+<option value="ca">🇨🇦 加拿大</option><option value="br">🇧🇷 巴西</option><option value="ae">🇦🇪 阿联酋</option>
+<option value="sg">🇸🇬 新加坡</option><option value="in">🇮🇳 印度</option><option value="my">🇲🇾 马来西亚</option>
+<option value="th">🇹🇭 泰国</option><option value="vn">🇻🇳 越南</option>
+</select>
+</div>
+</div>
+<div class="row three">
+<div class="g"><label>产品类别</label>
+<select id="cat">
+<option value="electronics">📱 电子产品</option><option value="clothing">👕 服装</option>
+<option value="shoes">👟 鞋类</option><option value="toys">🧸 玩具</option>
+<option value="furniture">🪑 家具</option><option value="home">🏠 家居</option>
+<option value="beauty">💄 美妆</option><option value="pets">🐾 宠物用品</option>
+<option value="auto">🚗 汽车配件</option><option value="food">🍫 食品</option>
+<option value="books">📚 书籍</option><option value="bags">👜 箱包</option>
+<option value="jewelry">💎 珠宝</option>
+</select>
+</div>
+<div class="g"><label>货值 CIF (USD)</label><input type="number" id="val" value="1000" min="0" step="100"></div>
+<div class="g"><label>运费 (USD)</label><input type="number" id="ship" value="100" min="0" step="10"></div>
+</div>
+<div class="result-box">
+<div class="label">预计总税费</div>
+<div class="big" id="totalR">$0.00</div>
+</div>
+<div class="result-detail">
+<div class="result-item"><div class="val" id="dutyR">$0</div><div class="lbl">关税</div></div>
+<div class="result-item"><div class="val" id="vatR">$0</div><div class="lbl">增值税</div></div>
+<div class="result-item"><div class="val" id="rateR">0%</div><div class="lbl">综合税率</div></div>
+<div class="result-item"><div class="val" id="totalR2">$0</div><div class="lbl">到岸总成本</div></div>
+</div>
+<div class="tip">💡 估算值仅供参考，实际以海关核定为准。保险费按货值0.6%估算。</div>
+</div>
+
+<div class="card">
+<h2><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>关税参考速查</h2>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:.78rem">
+<thead><tr><th>产品</th><th>🇺🇸 美国</th><th>🇪🇺 欧盟</th><th>🇬🇧 英国</th><th>🇯🇵 日本</th><th>🇦🇺 澳洲</th></tr></thead>
+<tbody>
+<tr><td>📱 电子产品</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr><td>👕 服装</td><td>12%</td><td>12%</td><td>12%</td><td>12%</td><td>10%</td></tr>
+<tr><td>👟 鞋类</td><td>10%</td><td>8%</td><td>8%</td><td>15%</td><td>8%</td></tr>
+<tr><td>🧸 玩具</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+<tr><td>🪑 家具</td><td>1%</td><td>0%</td><td>0%</td><td>2%</td><td>0%</td></tr>
+<tr><td>💄 美妆</td><td>5.5%</td><td>6.5%</td><td>6.5%</td><td>6%</td><td>5%</td></tr>
+<tr><td>👜 箱包</td><td>9%</td><td>8%</td><td>8%</td><td>10%</td><td>6%</td></tr>
+<tr><td>💎 珠宝</td><td>5.5%</td><td>4%</td><td>4%</td><td>5%</td><td>4%</td></tr>
+</tbody>
+</table>
+<p style="font-size:.7rem;color:#aaa;margin-top:6px">* 关税税率随政策调整，以上为常见品类参考值</p>
+</div>
+</div>
+
+</div>
+<footer>跨境关税计算器 &copy; 2026 · <a href="./">📐 尺寸换算</a> · <a href="./shipping.html">🚚 运费</a> · <a href="privacy.html">隐私</a></footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx" crossorigin></script>
+<script>
+var rates={us:{electronics:0,clothing:12,shoes:10,toys:0,furniture:1,home:3.5,beauty:5.5,pets:0,auto:2.5,food:8,books:0,bags:9,jewelry:5.5,vat:0},eu:{electronics:0,clothing:12,shoes:8,toys:0,furniture:0,home:3,beauty:6.5,pets:0,auto:3.5,food:15,books:0,bags:8,jewelry:4,vat:20},uk:{electronics:0,clothing:12,shoes:8,toys:0,furniture:0,home:3,beauty:6.5,pets:0,auto:3.5,food:12,books:0,bags:8,jewelry:4,vat:20},jp:{electronics:0,clothing:12,shoes:15,toys:0,furniture:2,home:4,beauty:6,pets:0,auto:0,food:18,books:0,bags:10,jewelry:5,vat:10},kr:{electronics:0,clothing:13,shoes:12,toys:0,furniture:3,home:5,beauty:8,pets:0,auto:4,food:20,books:0,bags:9,jewelry:6,vat:10},au:{electronics:0,clothing:10,shoes:8,toys:0,furniture:0,home:3,beauty:5,pets:0,auto:5,food:10,books:0,bags:6,jewelry:4,vat:10},ca:{electronics:0,clothing:12,shoes:15,toys:0,furniture:3,home:4,beauty:6,pets:0,auto:4,food:12,books:0,bags:11,jewelry:5,vat:13},br:{electronics:12,clothing:25,shoes:30,toys:20,furniture:15,home:18,beauty:20,pets:10,auto:18,food:25,books:0,bags:25,jewelry:18,vat:17},ae:{electronics:0,clothing:5,shoes:5,toys:0,furniture:0,home:0,beauty:0,pets:0,auto:5,food:5,books:0,bags:5,jewelry:0,vat:5},sg:{electronics:0,clothing:0,shoes:0,toys:0,furniture:0,home:0,beauty:0,pets:0,auto:0,food:0,books:0,bags:0,jewelry:0,vat:9},in:{electronics:10,clothing:20,shoes:25,toys:15,furniture:12,home:14,beauty:18,pets:8,auto:15,food:30,books:0,bags:20,jewelry:20,vat:18},my:{electronics:0,clothing:15,shoes:15,toys:0,furniture:5,home:8,beauty:10,pets:0,auto:10,food:12,books:0,bags:10,jewelry:5,vat:10},th:{electronics:0,clothing:20,shoes:20,toys:5,furniture:8,home:10,beauty:12,pets:5,auto:8,food:15,books:0,bags:15,jewelry:10,vat:7},vn:{electronics:0,clothing:18,shoes:20,toys:5,furniture:8,home:10,beauty:12,pets:5,auto:10,food:18,books:0,bags:15,jewelry:10,vat:10}};
+function calc(){var to=$("toC").value,cat=$("cat").value,val=parseFloat($("val").value)||0,ship=parseFloat($("ship").value)||0;var d=rates[to];if(!d)return;var cif=val+ship+val*0.006;var dr=d[cat]/100;var duty=cif*dr;var vat=(cif+duty)*d.vat/100;var total=duty+vat;var fm=function(n){return "$"+n.toFixed(2).replace(/\\B(?=(\\d{3})+(?!\\d))/g,",")};$("totalR").textContent=fm(total);$("dutyR").textContent=fm(duty);$("vatR").textContent=fm(vat);$("rateR").textContent=d.vat?(dr*100+d.vat).toFixed(1)+"%":(dr*100).toFixed(1)+"%";$("totalR2").textContent=fm(cif+total)}
+document.addEventListener("DOMContentLoaded",function(){calc();["toC","cat","val","ship"].forEach(function(i){$(i).addEventListener("input",calc)})});
+</script>
+</body>
+</html>
